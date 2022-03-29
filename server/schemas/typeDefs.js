@@ -1,16 +1,16 @@
 const { gql } = require('apollo-server-express');
-//TODO type Book should include the pageCount and publishedDate
-//TODO input BookInput should include the pageCount and publishedDate
+//TODO type Dog should include the pageCount and publishedDate
+//TODO input DogInput should include the pageCount and publishedDate
 const typeDefs = gql`
   type User {
     _id: ID!
     username: String!
     email: String
-    bookCount: Int
-    savedBooks: [Book]
+    dogCount: Int
+    savedDogs: [Dog]
   }
-  type Book {
-    bookId: ID!
+  type Dog {
+    dogId: ID!
     authors: [String]
     description: String
     image: String
@@ -23,10 +23,10 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
-  input BookInput {
+  input DogInput {
     authors: [String]
     description: String!
-    bookId: String!
+    dogId: String!
     image: String
     link: String
     title: String!
@@ -39,8 +39,8 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(bookData: BookInput!): User
-    removeBook(bookId: ID!): User
+    saveDog(dogData: DogInput!): User
+    removeDog(dogId: ID!): User
   }
 `;
 module.exports = typeDefs;

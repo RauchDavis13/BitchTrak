@@ -21,15 +21,15 @@ export const ADD_USER = gql`
     }
   }
 `;
-//TODO add the pageCount and publishedDate to the savedBooks query
-export const SAVE_BOOK = gql`
-  mutation saveBook($bookData: BookInput!) {
-    saveBook(bookData: $bookData) {
+//TODO add the pageCount and publishedDate to the savedDogs query
+export const SAVE_DOG = gql`
+  mutation saveDog($dogData: DogInput!) {
+    saveDog(dogData: $dogData) {
       _id
       username
       email
-      savedBooks {
-        bookId
+      savedDogs {
+        dogId
         authors
         image
         description
@@ -41,15 +41,15 @@ export const SAVE_BOOK = gql`
     }
   }
 `;
-//TODO add the pageCount and publishedDate to the savedBooks query
-export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: ID!) {
-    removeBook(bookId: $bookId) {
+//TODO add the pageCount and publishedDate to the savedDogs query
+export const REMOVE_DOG = gql`
+  mutation removeDog($dogId: ID!) {
+    removeDog(dogId: $dogId) {
       _id
       username
       email
-      savedBooks {
-        bookId
+      savedDogs {
+        dogId
         authors
         image
         description
