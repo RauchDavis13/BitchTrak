@@ -2,37 +2,37 @@ const { Schema } = require("mongoose");
 
 // This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedDogs` array in User.js
 const dogSchema = new Schema({
-  authors: [
-    {
-      type: String,
-    },
-  ],
-  description: {
-    type: String,
-    required: true,
-  },
-  // saved dog id from GoogleDogs
+      // set custom id to avoid confusion with parent userId
   dogId: {
-    type: String,
-    required: true,
+    type: Schema.Types.ObjectId,
+    default: () => new Types.ObjectId()
+  },
+  dogName: {
+      type: String,
+      required: true,
+  },  
+  description: {
+    type: String,    
   },
   image: {
     type: String,
   },
-  link: {
-    type: String,
+  age: {
+    type: Number,
   },
-  title: {
+  breed: {
     type: String,
     required: true,
   },
-  //TODO: add the pageCount property. It should be a Number.
-  pageCount: {
-    type: Number,
-  },
-  //TODO: add the publishedDate property. It should be a String.
-  publishedDate: {
+  gender: {
     type: String,
+    required: true,
+  },
+  lastPeriod: {
+    type: Date,
+  },
+  pureBreed: {
+    type: Boolean,
   },
 });
 

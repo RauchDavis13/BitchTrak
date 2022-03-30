@@ -1,6 +1,5 @@
 const { gql } = require('apollo-server-express');
-//TODO type Dog should include the pageCount and publishedDate
-//TODO input DogInput should include the pageCount and publishedDate
+
 const typeDefs = gql`
   type User {
     _id: ID!
@@ -11,27 +10,28 @@ const typeDefs = gql`
   }
   type Dog {
     dogId: ID!
-    authors: [String]
+    dogName: String!
     description: String
     image: String
-    link: String
-    title: String!
-    pageCount: Int
-    publishedDate: String
+    age: Int
+    breed: String!
+    gender: String!
+    lastPeriod: String
+    pureBreed: Boolean
   }
   type Auth {
     token: ID!
     user: User
   }
   input DogInput {
-    authors: [String]
-    description: String!
-    dogId: String!
+    dogName: String!
+    description: String
     image: String
-    link: String
-    title: String!
-    pageCount: Int
-    publishedDate: String
+    age: Int
+    breed: String!
+    gender: String!
+    lastPeriod: String
+    pureBreed: Boolean
   }
   type Query {
     me: User
