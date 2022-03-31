@@ -41,14 +41,21 @@ const SearchDogs = () => {
       const { items } = await response.json();
       const dogData = items.map((dog) => ({
         dogId: dog.id,
-        authors: dog.volumeInfo.authors || ['No author to display'],
-        title: dog.volumeInfo.title,
-        description: dog.volumeInfo.description,
-        image: dog.volumeInfo.imageLinks?.thumbnail || '',
-        //TODO add pageCount property
-        //TODO add publishedDate property
-        pageCount: dog.volumeInfo.pageCount,
-        publishedDate: dog.volumeInfo.publishedDate
+        dogName: dog.name,
+        breeds: dog.breeds.primary,
+        age: dog.age,
+        description: dog.description,
+        gender: dog.gender,
+        fixed: dog.attributes.spayed_neutered,
+        shots: dog.attributes.shots_current,
+        photos: dog.photoLinks?.thumbnail || '',
+
+        email: dog.contact.email,
+        phone: dog.contact.phone,
+        address: dog.contact.address.address1,
+        city: dog.contact.address.city,
+        state: dog.contact.address.state,
+        postcode: dog.contact.address.postcode,      
       }));
       setSearchedDogs(dogData);
       setSearchInput('');
@@ -119,8 +126,8 @@ const SearchDogs = () => {
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{dog.title}</Card.Title>
-                  <p className="small">Authors: {dog.authors}</p>
+                  <Card.Title>{dog.name}</Card.Title>
+                  <p className="small">Authors: {dog.breed}</p>
                   { /* TODO: show the dog's pageCount and published Date */}
                   <p>Page count: {dog.pageCount} </p>
                   <p>Published date: {dog.publishedDate} </p>

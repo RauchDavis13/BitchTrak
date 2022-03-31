@@ -1,10 +1,11 @@
 const { Schema, model } = require('mongoose');
 
-// import schema from Dog.js
-const dogSchema = require('./Dog');
-
 const petSchema = new Schema(
   {
+    petId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId()
+    },
     petName: {
       type: String,
       required: true,

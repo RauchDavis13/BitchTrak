@@ -14,13 +14,13 @@ const dogSchema = new Schema({
   description: {
     type: String,    
   },
-  image: {
+  phtotos: {
     type: String,
   },
   age: {
     type: Number,
   },
-  breed: {
+  breeds: {
     type: String,
     required: true,
   },
@@ -28,12 +28,34 @@ const dogSchema = new Schema({
     type: String,
     required: true,
   },
-  lastPeriod: {
-    type: Date,
-  },
-  pureBreed: {
+  fixed: {
     type: Boolean,
   },
+  shots: {
+    type: Boolean,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must use a valid email address'],
+  },
+  phone: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  city: {
+    type: String,
+  },
+  state: {
+    type: String,
+  },
+  postcode: {
+    type: String,
+  }
+
 });
 
 module.exports = dogSchema;

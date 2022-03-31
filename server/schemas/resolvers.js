@@ -38,6 +38,34 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+
+    savePet: async (parent, { petData }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedPets: petData } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    removePet: async (parent, { petId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedPets: { petId } } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    
     saveDog: async (parent, { dogData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
