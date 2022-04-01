@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose');
 
 const petSchema = new Schema(
   {
+     // set custom id to avoid confusion with parent userId
     petId: {
       type: Schema.Types.ObjectId,
       default: () => new Types.ObjectId()
@@ -36,7 +37,7 @@ const petSchema = new Schema(
 
 
     // set savedPetss to be an array of data that adheres to the petSchema
-    savedDogs: [dogSchema],
+    savedPets: [petSchema],
   },
   // set this to use virtual below
   {
@@ -48,9 +49,9 @@ const petSchema = new Schema(
 
 
 
-// when we query a user, we'll also get another field called `dogCount` with the number of saved dogs we have
+// when a user is queried, we'll also get another field called `petCount` with the number of saved pets the user has
 petSchema.virtual('petCount').get(function () {
-  return this.savedDogs.length;
+  return this.savedPets.length;
 });
 
 const Pet = model('Pet', petSchema);

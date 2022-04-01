@@ -24,6 +24,7 @@ const userSchema = new Schema(
     },
     // set savedDogs to be an array of data that adheres to the dogSchema
     savedDogs: [dogSchema],
+    // set savedPets to be an array of data that adheres to the petSchema
     savedPets: [petSchema],
   },
      // set savedPets to be an array of data that adheres to the petSchema
@@ -51,9 +52,14 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `dogCount` with the number of saved dogs we have
+// when we query a user, we'll also get another field called `dogCount` with the number of saved dogs the owner has
 userSchema.virtual('dogCount').get(function () {
   return this.savedDogs.length;
+});
+
+// when we query a user, we'll also get another field called `petCount` with the number of saved pets the owner has
+userSchema.virtual('petCount').get(function () {
+  return this.savedPets.length;
 });
 
 const User = model('User', userSchema);

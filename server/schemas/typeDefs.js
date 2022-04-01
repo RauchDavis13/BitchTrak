@@ -38,7 +38,6 @@ const typeDefs = gql`
     age: Int
     breeds: String!
     gender: String!
-    fixed: Boolean
     shots: Boolean
     email: String
     phone: String
@@ -58,7 +57,6 @@ const typeDefs = gql`
     age: Int
     breeds: String!
     gender: String!
-    fixed: Boolean
     shots: Boolean
     email: String
     phone: String

@@ -58,4 +58,11 @@ const dogSchema = new Schema({
 
 });
 
-module.exports = dogSchema;
+// when a user is queried, we'll also get another field called `dogCount` with the number of saved dogs the user has
+dogSchema.virtual('dogCount').get(function () {
+  return this.savedDogs.length;
+});
+
+const Dog = model('Dog', dogSchema);
+
+module.exports = Dog;
