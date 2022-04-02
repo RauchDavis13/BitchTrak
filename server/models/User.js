@@ -1,9 +1,9 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+const { Schema, model } = require("mongoose");
+const bcrypt = require("bcrypt");
 
 // import schema from Dog.js
-const dogSchema = require('./Dog');
-const petSchema = require('./Pet');
+const dogSchema = require("./Dog");
+const petSchema = require("./Pet");
 
 const userSchema = new Schema(
   {
@@ -16,7 +16,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, 'Must use a valid email address'],
+      match: [/.+@.+\..+/, "Must use a valid email address"],
     },
     password: {
       type: String,
@@ -27,7 +27,7 @@ const userSchema = new Schema(
     // set savedPets to be an array of data that adheres to the petSchema
     savedPets: [petSchema],
   },
-     // set savedPets to be an array of data that adheres to the petSchema
+  // set savedPets to be an array of data that adheres to the petSchema
 
   // set this to use virtual below
   {
@@ -38,8 +38,8 @@ const userSchema = new Schema(
 );
 
 // hash user password
-userSchema.pre('save', async function (next) {
-  if (this.isNew || this.isModified('password')) {
+userSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -53,15 +53,15 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // when we query a user, we'll also get another field called `dogCount` with the number of saved dogs the owner has
-userSchema.virtual('dogCount').get(function () {
+userSchema.virtual("dogCount").get(function () {
   return this.savedDogs.length;
 });
 
 // when we query a user, we'll also get another field called `petCount` with the number of saved pets the owner has
-userSchema.virtual('petCount').get(function () {
+userSchema.virtual("petCount").get(function () {
   return this.savedPets.length;
 });
 
-const User = model('User', userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;
