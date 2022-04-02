@@ -7,6 +7,7 @@ const typeDefs = gql`
     email: String
     dogCount: Int
     savedDogs: [Dog]
+    savedPets: [Pet]
   }
   type Pet {
     petId: ID!
@@ -75,7 +76,7 @@ const typeDefs = gql`
     savedDog(dogData: DogInput!): User
     removeDog(dogId: ID!): User
     savePet(petData: PetInput!): User
-    removedPet(PetId: ID!): User
+    removePet(PetId: ID!): User
   }
 `;
 module.exports = typeDefs;
