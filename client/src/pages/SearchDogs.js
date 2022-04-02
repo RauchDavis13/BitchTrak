@@ -48,7 +48,7 @@ const SearchDogs = () => {
             description: dog.description,
             gender: dog.gender,
             shots: dog.attributes.shots_current,
-            photos: dog.photoLinks?.thumbnail || '',
+            photos: dog.photos?.medium || '',
     
             email: dog.contact.email,
             phone: dog.contact.phone,
@@ -130,9 +130,6 @@ const SearchDogs = () => {
                 <Card.Body>
                   <Card.Title>{dog.name}</Card.Title>
                   <p className="small">Authors: {dog.breed}</p>
-                  { /* TODO: show the dog's pageCount and published Date */}
-                  <p>Page count: {dog.pageCount} </p>
-                  <p>Published date: {dog.publishedDate} </p>
                   <Card.Text>{dog.description}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
