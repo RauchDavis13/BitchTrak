@@ -14,7 +14,7 @@ const dogSchema = new Schema({
   description: {
     type: String,    
   },
-  phtotos: {
+  photos: {
     type: String,
   },
   age: {
@@ -27,9 +27,6 @@ const dogSchema = new Schema({
   gender: {
     type: String,
     required: true,
-  },
-  fixed: {
-    type: Boolean,
   },
   shots: {
     type: Boolean,

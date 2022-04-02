@@ -31,7 +31,7 @@ const petSchema = new Schema(
     female: {
       type: Boolean,
     },
-    lastPeriod: {
+    lastHeat: {
       type: Date,
     },
 

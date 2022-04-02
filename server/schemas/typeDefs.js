@@ -17,7 +17,7 @@ const typeDefs = gql`
     breed: String
     pureBreed: Boolean
     female: Boolean
-    lastPeriod: Date  
+    lastHeat: Date  
   }
   input PetInput {
     petName: String!
@@ -27,7 +27,7 @@ const typeDefs = gql`
     breed: String
     pureBreed: Boolean
     female: Boolean
-    lastPeriod: Date  
+    lastHeat: Date  
   }
 
   type Dog {
