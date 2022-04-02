@@ -15,7 +15,8 @@ const SavedPets = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removePet, { error }] = useMutation(REMOVE_PET);
   const userData = data?.me || {};
-  const addPet 
+  // function to add new pet to User
+  const addPet = async
 
 
   // create function that accepts the pet's mongo _id value as param and deletes the pet from the database

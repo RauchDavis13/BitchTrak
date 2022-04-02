@@ -39,24 +39,26 @@ const SearchDogs = () => {
         throw new Error('something went wrong!');
       }
       const { items } = await response.json();
-      const dogData = items.map((dog) => ({
-        dogId: dog.id,
-        dogName: dog.name,
-        breeds: dog.breeds.primary,
-        age: dog.age,
-        description: dog.description,
-        gender: dog.gender,
-        fixed: dog.attributes.spayed_neutered,
-        shots: dog.attributes.shots_current,
-        photos: dog.photoLinks?.thumbnail || '',
-
-        email: dog.contact.email,
-        phone: dog.contact.phone,
-        address: dog.contact.address.address1,
-        city: dog.contact.address.city,
-        state: dog.contact.address.state,
-        postcode: dog.contact.address.postcode,      
-      }));
+      const dogData = items.map((dog) => {
+        if (!dog.attributes.spayed_neutered) {
+          return {dogId: dog.id,
+            dogName: dog.name,
+            breeds: dog.breeds.primary,
+            age: dog.age,
+            description: dog.description,
+            gender: dog.gender,
+            shots: dog.attributes.shots_current,
+            photos: dog.photoLinks?.thumbnail || '',
+    
+            email: dog.contact.email,
+            phone: dog.contact.phone,
+            address: dog.contact.address.address1,
+            city: dog.contact.address.city,
+            state: dog.contact.address.state,
+            postcode: dog.contact.address.postcode}      
+        }
+        
+      });
       setSearchedDogs(dogData);
       setSearchInput('');
     } catch (err) {

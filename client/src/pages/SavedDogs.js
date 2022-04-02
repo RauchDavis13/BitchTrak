@@ -62,12 +62,10 @@ const SavedDogs = () => {
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{dog.title}</Card.Title>
+                  <Card.Title>{dog.dogName}</Card.Title>
                   <p className="small">Authors: {dog.authors}</p>
                   <Card.Text>{dog.description}</Card.Text>
-                  { /* TODO: show the dog's pageCount and published Date */}
-                  <p>Page count: {dog.pageCount} </p>
-                  <p>Published date: {dog.publishedDate} </p>
+       
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteDog(dog.dogId)}
