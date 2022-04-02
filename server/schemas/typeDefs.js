@@ -11,7 +11,7 @@ const typeDefs = gql`
   type Pet {
     petId: ID!
     petName: String!
-    petDescription: String!
+    petDescription: String
     image: String
     petBDay: Date
     breed: String
@@ -21,7 +21,7 @@ const typeDefs = gql`
   }
   input PetInput {
     petName: String!
-    petDescription: String!
+    petDescription: String
     image: String
     petBDay: Date
     breed: String

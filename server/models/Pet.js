@@ -14,7 +14,6 @@ const petSchema = new Schema(
     },
     petDescription: {
       type: String,
-      required: true,
     },
     image: {
       type: String,
