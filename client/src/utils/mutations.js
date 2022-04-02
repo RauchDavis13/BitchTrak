@@ -30,13 +30,19 @@ export const SAVE_DOG = gql`
       email
       savedDogs {
         dogId
-        authors
-        image
+        dogName
+        photos
         description
-        title
-        pageCount
-        publishedDate
-        link
+        age
+        breeds
+        gender
+        shots
+        email
+        phone
+        address
+        city
+        state
+        postcode
       }
     }
   }
@@ -50,13 +56,19 @@ export const REMOVE_DOG = gql`
       email
       savedDogs {
         dogId
-        authors
-        image
+        dogName
+        photos
         description
-        title
-        pageCount
-        publishedDate
-        link
+        age
+        breeds
+        gender
+        shots
+        email
+        phone
+        address
+        city
+        state
+        postcode
       }
     }
   }

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_PET } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
 const AddPetform = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({
+  const [petFormData, setPetFormData] = useState({
     username: '',
     email: '',
     password: '',
@@ -18,7 +18,7 @@ const AddPetform = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addPet, { error }] = useMutation(ADD_PET);
 
   useEffect(() => {
     if (error) {
@@ -30,7 +30,7 @@ const AddPetform = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
+    setPetFormData({ ...petFormData, [name]: value });
   };
 
   const handleFormSubmit = async (event) => {
@@ -44,16 +44,16 @@ const AddPetform = () => {
     }
 
     try {
-      const { data } = await addUser({
-        variables: { ...userFormData },
+      const { data } = await addPet({
+        variables: { ...petFormData },
       });
       console.log(data);
-      Auth.login(data.addUser.token);
+      Auth.login(data.addPet.token);
     } catch (err) {
       console.error(err);
     }
 
-    setUserFormData({
+    setPetFormData({
       username: '',
       email: '',
       password: '',
@@ -81,7 +81,7 @@ const AddPetform = () => {
             placeholder="Your username"
             name="username"
             onChange={handleInputChange}
-            value={userFormData.username}
+            value={petFormData.username}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -96,7 +96,7 @@ const AddPetform = () => {
             placeholder="Your email address"
             name="email"
             onChange={handleInputChange}
-            value={userFormData.email}
+            value={petFormData.email}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -111,7 +111,7 @@ const AddPetform = () => {
             placeholder="Your password"
             name="password"
             onChange={handleInputChange}
-            value={userFormData.password}
+            value={petFormData.password}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -121,9 +121,9 @@ const AddPetform = () => {
         <Button
           disabled={
             !(
-              userFormData.username &&
-              userFormData.email &&
-              userFormData.password
+              petFormData.username &&
+              petFormData.email &&
+              petFormData.password
             )
           }
           type="submit"
