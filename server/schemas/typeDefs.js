@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
@@ -17,7 +17,7 @@ const typeDefs = gql`
     breed: String
     pureBreed: Boolean
     female: Boolean
-    lastHeat: Date  
+    lastHeat: Date
   }
   input PetInput {
     petName: String!
@@ -27,7 +27,7 @@ const typeDefs = gql`
     breed: String
     pureBreed: Boolean
     female: Boolean
-    lastHeat: Date  
+    lastHeat: Date
   }
 
   type Dog {
@@ -44,7 +44,7 @@ const typeDefs = gql`
     address: String
     city: String
     state: String
-    postcode: String 
+    postcode: String
   }
   type Auth {
     token: ID!
@@ -67,6 +67,7 @@ const typeDefs = gql`
   }
   type Query {
     me: User
+    petSearch(name: String!): [Dog]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
