@@ -66,7 +66,7 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     
-    saveDog: async (parent, { dogData }, context) => {
+    savedDog: async (parent, { dogData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },

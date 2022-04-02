@@ -34,15 +34,6 @@ const petSchema = new Schema(
       type: Date,
     },
 
-
-    // set savedPetss to be an array of data that adheres to the petSchema
-    savedPets: [petSchema],
-  },
-  // set this to use virtual below
-  {
-    toJSON: {
-      virtuals: true,
-    },
   }
 );
 
