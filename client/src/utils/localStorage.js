@@ -6,7 +6,26 @@ export const getSavedDogIds = () => {
   return savedDogIds;
 };
 
-export const saveDogIds = (dogIdArr) => {
+export const savePetIds = (petIdArr) => {
+  if (petIdArr.length) {
+    localStorage.setItem('saved_pets', JSON.stringify(petIdArr));
+  } else {
+    localStorage.removeItem('saved_pets');
+  }
+};
+
+export const removePetId = (petId) => {
+  const savedPetIds = localStorage.getItem('saved_pets')
+    ? JSON.parse(localStorage.getItem('saved_pets'))
+    : null;
+
+  if (!savedPetIds) {
+    return false;
+  }
+};
+
+
+export const savedDogIds = (dogIdArr) => {
   if (dogIdArr.length) {
     localStorage.setItem('saved_dogs', JSON.stringify(dogIdArr));
   } else {

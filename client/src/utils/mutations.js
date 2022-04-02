@@ -21,10 +21,52 @@ export const ADD_USER = gql`
     }
   }
 `;
-//TODO add the pageCount and publishedDate to the savedDogs query
+
+export const ADD_PET = gql`
+  mutation savepet($petData: PetInput!) {
+    savepet(petData: $petData) {
+      _id
+      username
+      email
+      savedPets {
+        petId
+        petName
+        petDescription
+        image
+        petBDay
+        breed
+        pureBreed
+        female
+        lastHeat
+      }
+    }
+  }
+`;
+
+export const REMOVE_PET = gql`
+  mutation removePet($petId: ID!) {
+    removePet(petId: $petId) {
+      _id
+      username
+      email
+      savedPets {
+        petId
+        petName
+        petDescription
+        image
+        petBDay
+        breed
+        pureBreed
+        female
+        lastHeat
+      }
+    }
+  }
+`;
+
 export const SAVE_DOG = gql`
-  mutation saveDog($dogData: DogInput!) {
-    saveDog(dogData: $dogData) {
+  mutation savedDog($dogData: DogInput!) {
+    savedDog(dogData: $dogData) {
       _id
       username
       email
@@ -47,7 +89,9 @@ export const SAVE_DOG = gql`
     }
   }
 `;
-//TODO add the pageCount and publishedDate to the savedDogs query
+
+
+
 export const REMOVE_DOG = gql`
   mutation removeDog($dogId: ID!) {
     removeDog(dogId: $dogId) {

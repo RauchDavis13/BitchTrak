@@ -9,9 +9,16 @@ import Auth from '../utils/auth';
 const AddPetform = () => {
   // set initial form state
   const [petFormData, setPetFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
+    petName: '',
+    breed: '',
+    pureBreed: '',
+    petDescription: '',
+    image: '',
+    petBDay: '',
+    female: '',
+    lastHeat: '',
+
+
   });
   // set state for form validation
   const [validated] = useState(false);
@@ -71,32 +78,32 @@ const AddPetform = () => {
           show={showAlert}
           variant="danger"
         >
-          Something went wrong with your signup!
+          Something went wrong with your new pet profile!
         </Alert>
 
         <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Your username"
-            name="username"
+            placeholder="Your pet name"
+            name="petName"
             onChange={handleInputChange}
-            value={petFormData.username}
+            value={petFormData.petName}
             required
           />
           <Form.Control.Feedback type="invalid">
-            Username is required!
+            Pet name is required!
           </Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Label htmlFor="breed">Email</Form.Label>
           <Form.Control
-            type="email"
-            placeholder="Your email address"
-            name="email"
+            type="breed"
+            placeholder="Your new pet's breed"
+            name="breed"
             onChange={handleInputChange}
-            value={petFormData.email}
+            value={petFormData.breed}
             required
           />
           <Form.Control.Feedback type="invalid">

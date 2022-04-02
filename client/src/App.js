@@ -12,7 +12,7 @@ import SearchDogs from './pages/SearchDogs';
 import SavedDogs from './pages/SavedDogs';
 import Navbar from './components/Navbar';
 import Pets from './pages/Pets';
-import AddPets from './pages/AddPets';
+import AddPets from './components/AddPet';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

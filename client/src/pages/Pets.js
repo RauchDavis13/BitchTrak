@@ -16,7 +16,9 @@ const SavedPets = () => {
   const [removePet, { error }] = useMutation(REMOVE_PET);
   const userData = data?.me || {};
   // function to add new pet to User
-  const addPet = async
+  const addPet = async () => {
+    console.log('add pet clicked');
+  };
 
 
   // create function that accepts the pet's mongo _id value as param and deletes the pet from the database
