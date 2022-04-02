@@ -1,6 +1,7 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');
+const petSearch = require("../queries/petfinder");
 
 const resolvers = {
   Query: {
@@ -13,6 +14,23 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in');
     },
+    petSearch: async (parent, args, context) => {
+      const pets = await petSearch(args.name)
+      console.log({pets})
+     const result = pets.map(pet => {
+        return{
+          dogId: pet.id,
+          authors: [],
+          description: pet.description,
+          image: pet.primary_photo_cropped.medium,
+          link: pet.url,
+          title:pet.name	
+        }
+      })
+      console.log(result)
+      return result
+    }
+  
   },
 
   Mutation: {
