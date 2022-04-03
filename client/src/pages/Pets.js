@@ -9,6 +9,7 @@ import {
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_PET } from '../utils/mutations';
+import { ADD_PET } from '../utils/mutations';
 import { removePetId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import AddPetform from '../components/AddPet';
@@ -17,13 +18,33 @@ import AddPetform from '../components/AddPet';
 const SavedPets = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removePet, { error }] = useMutation(REMOVE_PET);
+  const [addPet ] = useMutation(ADD_PET);
   const userData = data?.me || {};
 
   // function to add new pet to User
   // const addPet = async () => {
   //   console.log('add pet clicked');
   // };
-
+  // create function that accepts the pet's mongo _id value as param and deletes the pet from the database
+  const handleUpdatePet = async (petId) => {
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+    if (!token) {
+      return false;
+    }
+    try {
+      const { data } = await addPet({
+        variables: { petId },
+      });
+      // upon success, remove pet's id from localStorage
+      removePetId(petId);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  if (loading) {
+    return <h2>LOADING...</h2>;
+  }
 
   // create function that accepts the pet's mongo _id value as param and deletes the pet from the database
   const handleDeletePet = async (petId) => {
