@@ -1,5 +1,4 @@
-const { Schema, model } = require('mongoose');
-
+const { Schema } = require('mongoose');
 const petSchema = new Schema(
   {
      // set custom id to avoid confusion with parent userId
@@ -33,17 +32,11 @@ const petSchema = new Schema(
     lastHeat: {
       type: Date,
     },
-
   }
 );
-
-
-
-// when a user is queried, we'll also get another field called `petCount` with the number of saved pets the user has
-petSchema.virtual('petCount').get(function () {
-  return this.savedPets.length;
-});
-
-const Pet = model('Pet', petSchema);
-
-module.exports = Pet;
+// // when a user is queried, we'll also get another field called `petCount` with the number of saved pets the user has
+// petSchema.virtual('petCount').get(function () {
+//   return this.savedPets.length;
+// });
+// const Pet = model('Pet', petSchema);
+module.exports = petSchema;

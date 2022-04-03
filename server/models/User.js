@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 
 // import schema from Dog.js
 const dogSchema = require('./Dog');
-const petSchema = require('./Pet');
 
 const userSchema = new Schema(
   {
@@ -25,7 +24,6 @@ const userSchema = new Schema(
     // set savedDogs to be an array of data that adheres to the dogSchema
     savedDogs: [dogSchema],
     // set savedPets to be an array of data that adheres to the petSchema
-    savedPets: [petSchema],
   },
      // set savedPets to be an array of data that adheres to the petSchema
 
