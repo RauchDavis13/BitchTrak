@@ -17,7 +17,7 @@ const petSchema = new Schema({
     type: String,
   },
   petBDay: {
-    type: Date,
+    type: String,
   },
   breed: {
     type: String,
@@ -29,7 +29,7 @@ const petSchema = new Schema({
     type: Boolean,
   },
   lastHeat: {
-    type: Date,
+    type: String,
   },
 });
 // // when a user is queried, we'll also get another field called `petCount` with the number of saved pets the user has

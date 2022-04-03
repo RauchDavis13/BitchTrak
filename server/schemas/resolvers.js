@@ -21,12 +21,13 @@ const resolvers = {
       console.log({ pets });
       const result = pets.map((pet) => {
         return {
-          dogId: pet.id,
-          authors: [],
-          description: pet.description,
-          image: pet.primary_photo_cropped.medium,
-          link: pet.url,
-          title: pet.name,
+          petId: pet.id,
+          petName: pet.petName,
+          description: pet.petDescription,
+          petBday: pet.petBday,
+          breed: pet.breed,
+          pureBreed: pet.pureBreed,
+          lastheat: pet.lastHeat
         };
       });
       console.log(result);
@@ -85,7 +86,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    savedDog: async (parent, { dogData }, context) => {
+    saveDog: async (parent, { dogData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
