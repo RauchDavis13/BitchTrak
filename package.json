@@ -1,5 +1,5 @@
 {
-  "name": "googledogs-app",
+  "name": "breedtrak",
   "version": "1.0.0",
   "description": "",
   "main": "server/server.js",
@@ -19,6 +19,7 @@
     "@petfinder/petfinder-js": "^1.0.6",
     "apollo-server-express": "^2.15.0",
     "dotenv": "^16.0.0",
-    "graphiql": "^1.8.3"
+    "graphiql": "^1.8.3",
+    "mongodb": "^4.4.1"
   }
 }
