@@ -3,6 +3,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
 import { ADD_PET } from '../utils/mutations';
+import { SAVE_PET } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
@@ -11,6 +12,7 @@ import Auth from '../utils/auth';
 const AddPetform = () => {
   // set initial form state
   const [petFormData, setPetFormData] = useState({
+    petId: '',
     petName: '',
     breed: '',
     pureBreed: '',
@@ -32,6 +34,8 @@ const AddPetform = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const [addPet, { error }] = useMutation(ADD_PET);
+  const [savedPets] = useMutation(SAVE_PET);
+
 
   useEffect(() => {
     if (error) {
@@ -41,6 +45,7 @@ const AddPetform = () => {
     }
   }, [error]);
 
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setPetFormData({ ...petFormData, [name]: value });
@@ -67,7 +72,7 @@ const AddPetform = () => {
     }
 
     setPetFormData({
-      _id: '',
+      petId: '',
       petName: '',
       breed: '',
       pureBreed: '',
@@ -77,7 +82,12 @@ const AddPetform = () => {
       female: '',
       lastHeat: '',
     });
+    console.log(setPetFormData());
   };
+
+  // const updatedSavedPets = () => {
+
+  // };
 
   return (
     <>
@@ -200,8 +210,7 @@ const AddPetform = () => {
           }
           type="submit"
           variant="success"
-        >
-          onClick={() => handleUpdatePet(pet.petId)}
+         >
           Submit
         </Button>
       </Form>
