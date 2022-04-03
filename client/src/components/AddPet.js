@@ -23,9 +23,9 @@ const AddPetform = () => {
 
   });
 
-  console.log('AddPet');
+  console.log(petFormData);
 
-  
+
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -67,6 +67,7 @@ const AddPetform = () => {
     }
 
     setPetFormData({
+      _id: '',
       petName: '',
       breed: '',
       pureBreed: '',
@@ -95,7 +96,7 @@ const AddPetform = () => {
         <Form.Group>
           <Form.Label htmlFor="petName">Pet Name</Form.Label>
           <Form.Control
-            type="text"
+            type="petName"
             placeholder="Your new dog name"
             name="petName"
             onChange={handleInputChange}
@@ -132,19 +133,18 @@ const AddPetform = () => {
         <Form.Group>
           <Form.Label htmlFor="image">Load a Pic!</Form.Label>
           <Form.Control
-            type="image"
+            type="file"
             placeholder="Your image"
             name="image"
             onChange={handleInputChange}
             value={petFormData.image}
-            required
           />
         </Form.Group>
 
         <Form.Group>
           <Form.Label htmlFor="petBday">Birthday</Form.Label>
           <Form.Control
-            type="petBday"
+            type="petBDay"
             placeholder="Your new dog's birthday"
             name="petBDay"
             onChange={handleInputChange}
@@ -157,7 +157,7 @@ const AddPetform = () => {
           <Form.Control
             type="petDescription"
             placeholder="Add some info about your new dog"
-            name="breed"
+            name="petDescription"
             onChange={handleInputChange}
             value={petFormData.petDescription}
           />
@@ -178,7 +178,7 @@ const AddPetform = () => {
           <Form.Label htmlFor="lastHeat">Heat</Form.Label>
           <Form.Control
             type="lastHeat"
-            placeholder="When was you dog's last heat?"
+            placeholder="When was your dog's last heat?"
             name="lastHeat"
             onChange={handleInputChange}
             value={petFormData.lastHeat}
@@ -188,14 +188,20 @@ const AddPetform = () => {
         <Button
           disabled={
             !(
-              petFormData.username &&
-              petFormData.email &&
-              petFormData.password
+              petFormData.petName &&
+              petFormData.breed &&
+              petFormData.pureBreed &&
+              petFormData.petDescription  &&
+              petFormData.image  &&
+              petFormData.petBDay  &&
+              petFormData.female  &&
+              petFormData.lastHeat
             )
           }
           type="submit"
           variant="success"
         >
+          onClick={() => handleUpdatePet(pet.petId)}
           Submit
         </Button>
       </Form>
