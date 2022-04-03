@@ -2,14 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 
 import { useMutation } from '@apollo/client';
-import { ADD_PET } from '../utils/mutations';
 import { SAVE_PET } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
 
 
-const AddPetform = () => {
+const SavePetform = () => {
   // set initial form state
   const [petFormData, setPetFormData] = useState({
     petId: '',
@@ -33,9 +32,7 @@ const AddPetform = () => {
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
-  const [addPet, { error }] = useMutation(ADD_PET);
-  const [savedPets] = useMutation(SAVE_PET);
-
+  const [savePet, { error }] = useMutation(SAVE_PET);
 
   useEffect(() => {
     if (error) {
@@ -62,11 +59,11 @@ const AddPetform = () => {
     }
 
     try {
-      const { data } = await addPet({
+      const { data } = await savePet({
         variables: { ...petFormData },
       });
       console.log(data);
-      Auth.login(data.addPet.token);
+      Auth.login(data.savePet.token);
     } catch (err) {
       console.error(err);
     }
@@ -82,7 +79,7 @@ const AddPetform = () => {
       female: '',
       lastHeat: '',
     });
-    console.log(setPetFormData());
+
   };
 
   // const updatedSavedPets = () => {
@@ -218,4 +215,4 @@ const AddPetform = () => {
   );
 };
 
-export default AddPetform;
+export default SavePetform;

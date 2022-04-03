@@ -9,8 +9,9 @@ import {
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import { REMOVE_PET } from '../utils/mutations';
-import { ADD_PET } from '../utils/mutations';
+import { SAVE_PET } from '../utils/mutations';
 import { removePetId } from '../utils/localStorage';
+import { savePetId } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import AddPetform from '../components/AddPet';
 
@@ -18,14 +19,14 @@ import AddPetform from '../components/AddPet';
 const SavedPets = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removePet, { error }] = useMutation(REMOVE_PET);
-  const [addPet ] = useMutation(ADD_PET);
+  const [savePet ] = useMutation(SAVE_PET);
   const userData = data?.me || {};
 
   // function to add new pet to User
-  // const addPet = async () => {
+  // const savePet = async () => {
   //   console.log('add pet clicked');
   // };
-  // create function that accepts the pet's mongo _id value as param and deletes the pet from the database
+  // create function that accepts the pet's mongo _id value as param and updates the pet from the database
   const handleUpdatePet = async (petId) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -33,11 +34,11 @@ const SavedPets = () => {
       return false;
     }
     try {
-      const { data } = await addPet({
+      const { data } = await savePet({
         variables: { petId },
       });
       // upon success, remove pet's id from localStorage
-      removePetId(petId);
+      savePetId(petId);
     } catch (err) {
       console.error(err);
     }
@@ -73,7 +74,7 @@ const SavedPets = () => {
         {/* <Jumbotron fluid className="text-light bg-dark">
           <Container>
             <h1>Viewing {userData.username}'s pets!</h1>
-            <h3 onClick={addPet}>Add a new pet</h3>
+            <h3 onClick={savePet}>Add a new pet</h3>
           </Container>
         </Jumbotron> */}
         <Container>
@@ -124,7 +125,7 @@ const SavedPets = () => {
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Viewing {userData.username}'s pets!</h1>
-          <h3 onClick={addPet}>Add a new pet</h3>
+          <h3 onClick={savePet}>Add a new pet</h3>
         </Container>
       </Jumbotron>
       <Container>

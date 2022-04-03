@@ -22,26 +22,6 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_PET = gql`
-  mutation savepet($petData: PetInput!) {
-    savepet(petData: $petData) {
-      _id
-      username
-      email
-      savedPets {
-        petId
-        petName
-        petDescription
-        image
-        petBDay
-        breed
-        pureBreed
-        female
-        lastHeat
-      }
-    }
-  }
-`;
 
 export const SAVE_PET = gql`
   mutation savepet($petData: PetInput!) {
