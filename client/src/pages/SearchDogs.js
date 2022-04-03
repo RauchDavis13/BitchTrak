@@ -10,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 import { SAVE_DOG } from '../utils/mutations';
-import { savedDogIds, getSavedDogIds } from '../utils/localStorage';
+import { saveDogIds, getSavedDogIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 const SearchDogs = () => {
   // create state for holding returned google api data
@@ -19,11 +19,11 @@ const SearchDogs = () => {
   const [searchInput, setSearchInput] = useState('');
   // create state to hold saved dogId values
   const [savedDogIds, setSavedDogIds] = useState(getSavedDogIds());
-  const [savedDog, { error }] = useMutation(SAVE_DOG);
+  const [saveDog, { error }] = useMutation(SAVE_DOG);
   // set up useEffect hook to save `savedDogIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
-    return () => savedDogIds(savedDogIds);
+    return () => saveDogIds(savedDogIds);
   });
   // create method to search for dogs and set state on form submit
   const handleFormSubmit = async (event) => {
@@ -40,7 +40,7 @@ const SearchDogs = () => {
       }
       const { items } = await response.json();
       const dogData = items.map((dog) => {
-        if (!dog.attributes.spayed_neutered) {
+        // if (!dog.attributes.spayed_neutered) {
           return {dogId: dog.id,
             dogName: dog.name,
             breeds: dog.breeds.primary,
@@ -56,7 +56,7 @@ const SearchDogs = () => {
             city: dog.contact.address.city,
             state: dog.contact.address.state,
             postcode: dog.contact.address.postcode}      
-        }
+        // }
         
       });
       setSearchedDogs(dogData);
@@ -75,7 +75,7 @@ const SearchDogs = () => {
       return false;
     }
     try {
-      const { data } = await savedDog({
+      const { data } = await saveDog({
         variables: { dogData: { ...dogToSave } },
       });
       console.log(savedDogIds);
