@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User } = require("../models");
-const { signToken } = require("../auth");
+const { signToken } = require("../utils/auth");
 const petSearch = require("../queries/petfinder");
 
 const resolvers = {
@@ -27,7 +27,7 @@ const resolvers = {
           petBday: pet.petBday,
           breed: pet.breed,
           pureBreed: pet.pureBreed,
-          lastheat: pet.lastHeat
+          lastheat: pet.lastHeat,
         };
       });
       console.log(result);
@@ -37,8 +37,10 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, args) => {
+      console.log(args);
       const user = await User.create(args);
       const token = signToken(user);
+      console.log(token);
 
       return { token, user };
     },
