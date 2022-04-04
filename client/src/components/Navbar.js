@@ -27,7 +27,7 @@ const AppNavbar = () => {
                   <Nav.Link as={Link} to='/'>
                     Your Pets
                   </Nav.Link>
-                  <Nav.Link as={Link} to='/'>
+                  <Nav.Link as={Link} to='/addPets'>
                     Add a new Pet
                   </Nav.Link>
                   <Nav.Link as={Link} to='/searchDogs'>

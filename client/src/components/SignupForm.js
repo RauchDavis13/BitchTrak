@@ -13,6 +13,7 @@ const SignupForm = () => {
     email: '',
     password: '',
   });
+  console.log(userFormData);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
