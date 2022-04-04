@@ -178,28 +178,28 @@ const SearchDogs = () => {
                 ) : null}
                 <Card.Body>
                   {/* <Card.Title>{dog.title}</Card.Title> */}
-                  <p className="small">Breed: {dog.breeds}</p>
-                  <p className="small">Breed: {dog.age}</p>
-                  <p className="small">Breed: {dog.gender}</p>
-                  <p className="small">Breed: {dog.breeds}</p>
-                  <p className="small">Breed: {dog.shots}</p>
-                  <Card.Text>{dog.description}</Card.Text>
+                  <p className="small">Name: {searchedDogs.dogName}</p>
+                  <p className="small">Age: {searchedDogs.age}</p>
+                  <p className="small">Gender: {searchedDogs.gender}</p>
+                  <p className="small">Breed: {searchedDogs.breeds}</p>
+                  <p className="small">Has the dog had it's shots?: {searchedDogs.shots}</p>
+                  <Card.Text>{searchedDogs.description}</Card.Text>
                   <h4>Contact Info</h4>
-                  <p className="small">Email: {dog.email}</p>
-                  <p className="small">Phone: {dog.phone}</p> 
-                  <p className="small">Address: {dog.address}</p>
-                  <p className="small">City: {dog.city}</p>
-                  <p className="small">State: {dog.state}</p>
-                  <p className="small">Zip: {dog.postcode}</p>
+                  <p className="small">Email: {searchedDogs.email}</p>
+                  <p className="small">Phone: {searchedDogs.phone}</p> 
+                  <p className="small">Address: {searchedDogs.address}</p>
+                  <p className="small">City: {searchedDogs.city}</p>
+                  <p className="small">State: {searchedDogs.state}</p>
+                  <p className="small">Zip: {searchedDogs.postcode}</p>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedDogIds?.some(
-                        (savedId) => savedId === dog.dogId
+                        (savedId) => savedId === searchedDogs.dogId
                       )}
                       className="btn-block btn-info"
-                      onClick={() => handleSaveDog(dog.dogId)}
+                      onClick={() => handleSaveDog(searchedDogs.dogId)}
                     >
-                      {saveDogIds?.some((savedId) => savedId === dog.dogId)
+                      {saveDogIds?.some((savedId) => savedId === searchedDogs.dogId)
                         ? 'Dog Already Saved!'
                         : 'Save This Dog!'}
                     </Button>
