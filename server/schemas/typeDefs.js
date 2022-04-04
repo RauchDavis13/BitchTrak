@@ -34,12 +34,12 @@ const typeDefs = gql`
 
   type Dog {
     dogId: ID!
-    dogName: String!
+    dogName: String
     description: String
     photos: String
     age: Int
-    breeds: String!
-    gender: String!
+    breeds: String
+    gender: String
     shots: Boolean
     email: String
     phone: String
@@ -53,12 +53,12 @@ const typeDefs = gql`
     user: User
   }
   input DogInput {
-    dogName: String!
+    dogName: String
     description: String
     photos: String
     age: Int
-    breeds: String!
-    gender: String!
+    breeds: String
+    gender: String
     shots: Boolean
     email: String
     phone: String

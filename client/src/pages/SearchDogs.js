@@ -86,30 +86,77 @@ const SearchDogs = () => {
   };
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-          <h1>Search for Dogs !</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name="searchInput"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type="text"
-                  size="lg"
-                  placeholder="Search for a dog"
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-        </Container>
-      </Jumbotron>
+      {/* This is needed for the validation functionality above */}
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        {/* show alert if server response is bad */}
+        <Alert
+          dismissible
+          onClose={() => setShowAlert(false)}
+          show={showAlert}
+          variant="danger"
+        >
+          Something went wrong with your new dog profile!
+        </Alert>
+
+        <Form.Group>
+          <Form.Label htmlFor="dogName">Dog Name</Form.Label>
+          <Form.Control
+            type="dogName"
+            placeholder="Search for a dog by name"
+            name="dogName"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={dogData.dogName}
+          />
+        </Form.Group>
+   
+        <Form.Group>
+          <Form.Label htmlFor="breeds">Breed</Form.Label>
+          <Form.Control
+            type="breeds"
+            placeholder="Search by Breed"
+            name="breeds"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={dogData.breeds}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="age">Age</Form.Label>
+          <Form.Control
+            type="pureBreed"
+            placeholder="Search by Age"
+            name="age"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={dogData.age}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="gender">Gender</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Search by Gender (Male/Female)"
+            name="gender"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={dogData.gender}
+          />
+        </Form.Group>
+        <Button
+          // disabled={
+          //   !(
+          //     dogData.dogName &&
+          //     dogData.breeds &&
+          //     dogData.age  &&
+          //     dogData.gemder &&
+          //   )
+          // }
+          type="submit"
+          variant="success"
+         >
+          Submit
+        </Button>
+      </Form>
+    
       <Container>
         <h2>
           {searchedDogs.length
@@ -120,17 +167,29 @@ const SearchDogs = () => {
           {searchedDogs.map((dog) => {
             return (
               <Card key={dog.dogId} border="dark">
-                {dog.image ? (
+                <h3>Name: {dog.dogName}</h3>
+                {dog.photos ? (
                   <Card.Img
-                    src={dog.image}
-                    alt={`The cover for ${dog.title}`}
+                    src={dog.photos}
+                    alt={`The picture for ${dog.dogName}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{dog.name}</Card.Title>
-                  <p className="small">Authors: {dog.breed}</p>
+                  {/* <Card.Title>{dog.title}</Card.Title> */}
+                  <p className="small">Breed: {dog.breeds}</p>
+                  <p className="small">Breed: {dog.age}</p>
+                  <p className="small">Breed: {dog.gender}</p>
+                  <p className="small">Breed: {dog.breeds}</p>
+                  <p className="small">Breed: {dog.shots}</p>
                   <Card.Text>{dog.description}</Card.Text>
+                  <h4>Contact Info</h4>
+                  <p className="small">Email: {dog.email}</p>
+                  <p className="small">Phone: {dog.phone}</p> 
+                  <p className="small">Address: {dog.address}</p>
+                  <p className="small">City: {dog.city}</p>
+                  <p className="small">State: {dog.state}</p>
+                  <p className="small">Zip: {dog.postcode}</p>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedDogIds?.some(
@@ -139,7 +198,7 @@ const SearchDogs = () => {
                       className="btn-block btn-info"
                       onClick={() => handleSaveDog(dog.dogId)}
                     >
-                      {savedDogIds?.some((savedId) => savedId === dog.dogId)
+                      {saveDogIds?.some((savedId) => savedId === dog.dogId)
                         ? 'Dog Already Saved!'
                         : 'Save This Dog!'}
                     </Button>
