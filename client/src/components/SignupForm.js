@@ -9,6 +9,8 @@ import Auth from '../utils/auth';
 const SignupForm = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({
+    firstName: '',
+    lastName: '',
     username: '',
     email: '',
     password: '',
@@ -54,6 +56,8 @@ const SignupForm = () => {
     }
 
     setUserFormData({
+      firstName: '',
+      lastName: '',
       username: '',
       email: '',
       password: '',
@@ -90,6 +94,36 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
+          <Form.Label htmlFor="firstName">First Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Your First Name"
+            name="firstName"
+            onChange={handleInputChange}
+            value={userFormData.firstName}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            First Name is required!
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="lastName">Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Your Last Name"
+            name="lastName"
+            onChange={handleInputChange}
+            value={userFormData.lastName}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Last Name is required!
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
           <Form.Label htmlFor="email">Email</Form.Label>
           <Form.Control
             type="email"
@@ -121,6 +155,8 @@ const SignupForm = () => {
         <Button
           disabled={
             !(
+              userFormData.firstName &&
+              userFormData.lastName &&
               userFormData.username &&
               userFormData.email &&
               userFormData.password
