@@ -21,42 +21,99 @@ export const ADD_USER = gql`
     }
   }
 `;
-//TODO add the pageCount and publishedDate to the savedBooks query
-export const SAVE_BOOK = gql`
-  mutation saveBook($bookData: BookInput!) {
-    saveBook(bookData: $bookData) {
+
+
+export const SAVE_PET = gql`
+  mutation savepet($petData: PetInput!) {
+    savepet(petData: $petData) {
       _id
       username
       email
-      savedBooks {
-        bookId
-        authors
+      savedPets {
+        petId
+        petName
+        petDescription
         image
-        description
-        title
-        pageCount
-        publishedDate
-        link
+        petBDay
+        breed
+        pureBreed
+        female
+        lastHeat
       }
     }
   }
 `;
-//TODO add the pageCount and publishedDate to the savedBooks query
-export const REMOVE_BOOK = gql`
-  mutation removeBook($bookId: ID!) {
-    removeBook(bookId: $bookId) {
+
+export const REMOVE_PET = gql`
+  mutation removePet($petId: ID!) {
+    removePet(petId: $petId) {
       _id
       username
       email
-      savedBooks {
-        bookId
-        authors
+      savedPets {
+        petId
+        petName
+        petDescription
         image
+        petBDay
+        breed
+        pureBreed
+        female
+        lastHeat
+      }
+    }
+  }
+`;
+
+export const SAVE_DOG = gql`
+  mutation saveDog($dogData: DogInput!) {
+    saveDog(dogData: $dogData) {
+      _id
+      username
+      email
+      savedDogs {
+        dogId
+        dogName
+        photos
         description
-        title
-        pageCount
-        publishedDate
-        link
+        age
+        breeds
+        gender
+        shots
+        email
+        phone
+        address
+        city
+        state
+        postcode
+      }
+    }
+  }
+`;
+
+
+
+export const REMOVE_DOG = gql`
+  mutation removeDog($dogId: ID!) {
+    removeDog(dogId: $dogId) {
+      _id
+      username
+      email
+      savedDogs {
+        dogId
+        dogName
+        photos
+        description
+        age
+        breeds
+        gender
+        shots
+        email
+        phone
+        address
+        city
+        state
+        postcode
       }
     }
   }

@@ -1,21 +1,37 @@
 import { gql } from '@apollo/client';
 
-//TODO add pageCount and publishedDate to savedBooks
 export const QUERY_ME = gql`
   {
     me {
       _id
       username
       email
-      savedBooks {
-        bookId
-        authors
-        image
+      savedDogs {
+        dogId
+        dogName
+        photos
         description
-        title
-        pageCount
-        publishedDate
-        link
+        age
+        breeds
+        gender
+        shots
+        email
+        phone
+        address
+        city
+        state
+        postcode
+      }
+      savedPets {
+        petId
+        petname
+        image
+        petBday
+        petDescription
+        breed
+        pureBreed
+        female
+        lastheat
       }
     }
   }

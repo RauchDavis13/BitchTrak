@@ -1,46 +1,83 @@
-const { gql } = require('apollo-server-express');
-//TODO type Book should include the pageCount and publishedDate
-//TODO input BookInput should include the pageCount and publishedDate
+const { gql } = require("apollo-server-express");
+
 const typeDefs = gql`
   type User {
     _id: ID!
     username: String!
-    email: String
-    bookCount: Int
-    savedBooks: [Book]
+    email: String!
+    petCount: Int
+    dogCount: Int
+    savedDogs: [Dog]
+    savedPets: [Pet]
   }
-  type Book {
-    bookId: ID!
-    authors: [String]
-    description: String
+  type Pet {
+    petId: ID!
+    petName: String!
+    petDescription: String
     image: String
-    link: String
-    title: String!
-    pageCount: Int
-    publishedDate: String
+    petBDay: String
+    breed: String
+    pureBreed: Boolean
+    female: Boolean
+    lastHeat: String
+  }
+  input PetInput {
+    petName: String!
+    petDescription: String
+    image: String
+    petBDay: String
+    breed: String
+    pureBreed: Boolean
+    female: Boolean
+    lastHeat: String
+  }
+
+  type Dog {
+    dogId: ID!
+    dogName: String!
+    description: String
+    photos: String
+    age: Int
+    breeds: String!
+    gender: String!
+    shots: Boolean
+    email: String
+    phone: String
+    address: String
+    city: String
+    state: String
+    postcode: String
   }
   type Auth {
     token: ID!
     user: User
   }
-  input BookInput {
-    authors: [String]
-    description: String!
-    bookId: String!
-    image: String
-    link: String
-    title: String!
-    pageCount: Int
-    publishedDate: String
+  input DogInput {
+    dogName: String!
+    description: String
+    photos: String
+    age: Int
+    breeds: String!
+    gender: String!
+    shots: Boolean
+    email: String
+    phone: String
+    address: String
+    city: String
+    state: String
+    postcode: String
   }
   type Query {
     me: User
+    petSearch(name: String!): [Dog]
   }
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveBook(bookData: BookInput!): User
-    removeBook(bookId: ID!): User
+    saveDog(dogData: DogInput!): User
+    removeDog(dogId: ID!): User
+    savePet(petData: PetInput!): User
+    removePet(PetId: ID!): User
   }
 `;
 module.exports = typeDefs;
