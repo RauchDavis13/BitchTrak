@@ -87,16 +87,17 @@ const SearchDogs = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      {/* <Form noValidate validated={validated} onSubmit={handleFormSubmit}> */}
+      <Form onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
-        <Alert
+        {/* <Alert
           dismissible
           onClose={() => setShowAlert(false)}
           show={showAlert}
           variant="danger"
         >
           Something went wrong with your new dog profile!
-        </Alert>
+        </Alert> */}
 
         <Form.Group>
           <Form.Label htmlFor="dogName">Dog Name</Form.Label>
@@ -105,7 +106,7 @@ const SearchDogs = () => {
             placeholder="Search for a dog by name"
             name="dogName"
             onChange={(e) => setSearchInput(e.target.value)}
-            value={dogData.dogName}
+            value={searchedDogs.dogName}
           />
         </Form.Group>
    
@@ -116,7 +117,7 @@ const SearchDogs = () => {
             placeholder="Search by Breed"
             name="breeds"
             onChange={(e) => setSearchInput(e.target.value)}
-            value={dogData.breeds}
+            value={searchedDogs.breeds}
           />
         </Form.Group>
 
@@ -127,7 +128,7 @@ const SearchDogs = () => {
             placeholder="Search by Age"
             name="age"
             onChange={(e) => setSearchInput(e.target.value)}
-            value={dogData.age}
+            value={searchedDogs.age}
           />
         </Form.Group>
 
@@ -138,16 +139,16 @@ const SearchDogs = () => {
             placeholder="Search by Gender (Male/Female)"
             name="gender"
             onChange={(e) => setSearchInput(e.target.value)}
-            value={dogData.gender}
+            value={searchedDogs.gender}
           />
         </Form.Group>
         <Button
           // disabled={
           //   !(
-          //     dogData.dogName &&
-          //     dogData.breeds &&
-          //     dogData.age  &&
-          //     dogData.gemder &&
+          //     searchedDogs.dogName &&
+          //     searchedDogs.breeds &&
+          //     searchedDogs.age  &&
+          //     searchedDogs.gemder &&
           //   )
           // }
           type="submit"
