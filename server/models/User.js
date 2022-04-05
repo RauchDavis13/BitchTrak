@@ -22,12 +22,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    // petCount: {
+    //   type: Number,
+    // },
+    // dogCount: {
+    //   type: Number,
+    // },
     // set savedDogs to be an array of data that adheres to the dogSchema
     savedDogs: [dogSchema],
     // set savedPets to be an array of data that adheres to the petSchema
     savedPets: [petSchema],
   },
-  // set savedPets to be an array of data that adheres to the petSchema
+  
 
   // set this to use virtual below
   {
@@ -42,6 +48,7 @@ userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
+    console.log(this)
   }
 
   next();

@@ -13,7 +13,7 @@ const SignupForm = () => {
     email: '',
     password: '',
   });
-  console.log(userFormData);
+  // console.log(userFormData);
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -21,6 +21,7 @@ const SignupForm = () => {
 
   const [addUser, { error }] = useMutation(ADD_USER);
 
+  console.log (userFormData);
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -42,6 +43,7 @@ const SignupForm = () => {
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
+      console.log('breaking here')
     }
 
     try {
@@ -50,9 +52,11 @@ const SignupForm = () => {
       });
       console.log(data);
       Auth.login(data.addUser.token);
+      console.log(addUser.token)
     } catch (err) {
       console.error(err);
     }
+
 
     setUserFormData({
       username: '',
@@ -65,16 +69,17 @@ const SignupForm = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      {/* <Form noValidate validated={validated} onSubmit={handleFormSubmit}> */}
+      <Form onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
-        <Alert
+        {/* <Alert
           dismissible
           onClose={() => setShowAlert(false)}
           show={showAlert}
           variant="danger"
         >
           Something went wrong with your signup!
-        </Alert>
+        </Alert> */}
 
         <Form.Group>
           <Form.Label htmlFor="username">Username</Form.Label>
