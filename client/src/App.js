@@ -13,6 +13,7 @@ import SavedDogs from './pages/SavedDogs';
 import Navbar from './components/Navbar';
 import SavedPets from './pages/Pets';
 import AddPets from './components/AddPet';
+
 // import petSchema from '../../server/models/Pet';
 
 // Construct our main GraphQL API endpoint

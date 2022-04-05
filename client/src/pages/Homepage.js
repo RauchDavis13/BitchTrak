@@ -5,7 +5,7 @@ import {
     CardColumns,
     Card,
     Button,
-    Carousel
+    Carousel,
 } from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
@@ -42,7 +42,7 @@ const SavedDogs = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src=""
+                        src="https://user-images.githubusercontent.com/92537596/161655902-2cb8e195-a469-40e8-9558-f03ae43ca8bd.png"
                         alt="First slide"
                     />
                     <Carousel.Caption>
@@ -53,7 +53,7 @@ const SavedDogs = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="homepage1.png/800x400?text=Second slide&bg=282c34"
+                        src="https://user-images.githubusercontent.com/92537596/161657035-eee69036-909c-4eb3-be26-ec8cb91f8ab2.png"
                         alt="Second slide"
                     />
 
@@ -65,7 +65,7 @@ const SavedDogs = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="holder.js/800x400?text=Third slide&bg=20232a"
+                        src="https://user-images.githubusercontent.com/92537596/161657145-a28134ff-aa30-4498-ae19-d92a041cdd97.png"
                         alt="Third slide"
                     />
 
