@@ -16,21 +16,27 @@ const resolvers = {
 
       throw new AuthenticationError("Not logged in");
     },
-    petSearch: async (parent, args, context) => {
-      const pets = await petSearch(args.name);
-      console.log({ pets });
+    petSearch: async (parent,{petSearchInput}, context) => {
+      console.log({petSearchInput})
+      const pets = await petSearch({name:petSearchInput.name, zipcode:petSearchInput.zipcode});
+      console.log({ pets },pets[0].contact);
       const result = pets.map((pet) => {
         return {
           dogId: pet.id,
-          authors: [],
-          description: pet.description,
-          image: pet.primary_photo_cropped.medium,
-          link: pet.url,
-          title: pet.name,
+          dogName: 	pet.name,
+          description: 	pet.description,
+          photos: 	pet.primary_photo_cropped.medium,
+          age: 	pet.age,
+          breeds:	pet.breeds.primary,
+          gender:	pet.gender,
+          shots:	pet.attributes.shot_current,
+          contact:	pet.contact,
+      
+
         };
       });
       console.log(result);
-      return result;
+      return [];
     },
   },
 

@@ -31,6 +31,11 @@ const typeDefs = gql`
     lastHeat: String
   }
 
+  input PetSearchInput{
+    name: String
+    zipcode: String
+  }
+
   type Dog {
     dogId: ID!
     dogName: String!
@@ -68,7 +73,7 @@ const typeDefs = gql`
   }
   type Query {
     me: User
-    petSearch(name: String!): [Dog]
+    petSearch(petSearchInput: PetSearchInput!): [Dog]
   }
   type Mutation {
     login(email: String!, password: String!): Auth

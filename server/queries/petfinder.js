@@ -4,7 +4,7 @@ const { Client } = require ("@petfinder/petfinder-js");
 
 const client = new Client({apiKey: process.env.PETFINDER_APIKEY , secret: process.env.PETFINDER_SECRET});
 module.exports = 
-async function petSearch(name='Bingo'){
+async function petSearch({name, zipcode }){
 return await client.authenticate()
   .then(resp => {
     if (!resp) return null
@@ -19,6 +19,7 @@ return await client.authenticate()
         gender: "female",
         page: 1,
         limit: 10,
+        location: zipcode
       })
     .then(function (response) {
         console.log(response)
@@ -26,12 +27,13 @@ return await client.authenticate()
 
     })
     .catch(function (error) {
-        // Handle the error
+      console.log(error);  
+      // Handle the error
     });
     return apiResult
   })
 }
 // (async () => {
-//   const pet = await petSearch("Bingo");
+//   const pet = await petSearch({zipcode:"07013",name:""});
 //   console.log(pet)  
 // })()
