@@ -78,7 +78,7 @@ const typeDefs = gql`
     saveDog(dogData: DogInput!): User
     removeDog(dogId: ID!): User
     savePet(petId: PetInput!): User
-    removePet(PetId: ID!): User
+    removePet(petId: ID!): User
   }
 `;
 module.exports = typeDefs;
