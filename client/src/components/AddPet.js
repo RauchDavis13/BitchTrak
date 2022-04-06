@@ -11,7 +11,7 @@ import Auth from '../utils/auth';
 const SavePetform = () => {
   // set initial form state
   const [petFormData, setPetFormData] = useState({
-    petId: '',
+    _id: '',
     petName: '',
     breed: '',
     pureBreed: '',
@@ -195,14 +195,14 @@ const SavePetform = () => {
         <Button
           disabled={
             !(
-              petFormData.petName &&
-              petFormData.breed &&
-              petFormData.pureBreed &&
-              petFormData.petDescription  &&
-              petFormData.image  &&
-              petFormData.petBDay  &&
-              petFormData.female  &&
-              petFormData.lastHeat
+              petFormData.petName 
+              // petFormData.breed &&
+              // petFormData.pureBreed &&
+              // petFormData.petDescription  &&
+              // petFormData.image  &&
+              // petFormData.petBDay  &&
+              // petFormData.female  &&
+              // petFormData.lastHeat
             )
           }
           type="submit"

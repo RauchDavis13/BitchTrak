@@ -50,7 +50,7 @@ const SearchDogs = () => {
             shots: dog.attributes.shots_current,
             photos: dog.photos?.medium || '',
     
-            email: dog.contact.email,
+            dogEmail: dog.contact.email,
             phone: dog.contact.phone,
             address: dog.contact.address.address1,
             city: dog.contact.address.city,
@@ -90,6 +90,7 @@ const SearchDogs = () => {
       {/* <Form noValidate validated={validated} onSubmit={handleFormSubmit}> */}
       <Form onSubmit={handleFormSubmit}>
         {/* show alert if server response is bad */}
+
         {/* <Alert
           dismissible
           onClose={() => setShowAlert(false)}
@@ -185,7 +186,7 @@ const SearchDogs = () => {
                   <p className="small">Has the dog had it's shots?: {searchedDogs.shots}</p>
                   <Card.Text>{searchedDogs.description}</Card.Text>
                   <h4>Contact Info</h4>
-                  <p className="small">Email: {searchedDogs.email}</p>
+                  <p className="small">Email: {searchedDogs.dogEmail}</p>
                   <p className="small">Phone: {searchedDogs.phone}</p> 
                   <p className="small">Address: {searchedDogs.address}</p>
                   <p className="small">City: {searchedDogs.city}</p>

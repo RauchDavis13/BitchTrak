@@ -27,7 +27,7 @@ const SavedPets = () => {
   //   console.log('add pet clicked');
   // };
   // create function that accepts the pet's mongo _id value as param and updates the pet from the database
-  const handleUpdatePet = async (petId) => {
+  const handleUpdatePet = async (_id) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -35,10 +35,10 @@ const SavedPets = () => {
     }
     try {
       const { data } = await savePet({
-        variables: { petId },
+        variables: { _id },
       });
       // upon success, remove pet's id from localStorage
-      savePetId(petId);
+      savePetId(_id);
     } catch (err) {
       console.error(err);
     }
@@ -48,7 +48,7 @@ const SavedPets = () => {
   }
 
   // create function that accepts the pet's mongo _id value as param and deletes the pet from the database
-  const handleDeletePet = async (petId) => {
+  const handleDeletePet = async (_id) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
     if (!token) {
@@ -56,10 +56,10 @@ const SavedPets = () => {
     }
     try {
       const { data } = await removePet({
-        variables: { petId },
+        variables: { _id },
       });
       // upon success, remove pet's id from localStorage
-      removePetId(petId);
+      removePetId(_id);
     } catch (err) {
       console.error(err);
     }
@@ -88,7 +88,7 @@ const SavedPets = () => {
           <CardColumns>
             {userData.savedPets?.map((pet) => {
               return (
-                <Card key={pet.petId} border="dark">
+                <Card key={pet._id} border="dark">
   
                   {pet.image ? (
                     <Card.Img
@@ -106,7 +106,7 @@ const SavedPets = () => {
          
                     <Button
                       className="btn-block btn-danger"
-                      onClick={() => handleDeletePet(pet.petId)}
+                      onClick={() => handleDeletePet(pet._id)}
                     >
                       Delete this Pet!
                     </Button>
@@ -139,7 +139,7 @@ const SavedPets = () => {
         <CardColumns>
           {userData.savedPets?.map((pet) => {
             return (
-              <Card key={pet.petId} border="dark">
+              <Card key={pet._id} border="dark">
 
                 {pet.image ? (
                   <Card.Img
@@ -157,7 +157,7 @@ const SavedPets = () => {
        
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeletePet(pet.petId)}
+                    onClick={() => handleDeletePet(pet._id)}
                   >
                     Delete this Pet!
                   </Button>

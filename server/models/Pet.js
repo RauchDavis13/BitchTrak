@@ -1,7 +1,7 @@
 const { Schema } = require("mongoose");
 const petSchema = new Schema({
   // set custom id to avoid confusion with parent userId
-  petId: {
+  _id: {
     type: Schema.Types.ObjectId,
     default: () => new Types.ObjectId(),
   },
