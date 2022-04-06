@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import React, { useState, useEffect } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 
-import { useMutation } from '@apollo/client';
-import { SAVE_PET } from '../utils/mutations';
+import { useMutation } from "@apollo/client";
+import { SAVE_PET } from "../utils/mutations";
 
-import Auth from '../utils/auth';
-
-
+import Auth from "../utils/auth";
 
 const SavePetform = () => {
   // set initial form state
   const [petFormData, setPetFormData] = useState({
-    petId: '',
-    petName: '',
-    breed: '',
-    pureBreed: '',
-    petDescription: '',
-    image: '',
-    petBDay: '',
-    female: '',
-    lastHeat: '',
-
-
+    petId: "",
+    petName: "",
+    breed: "",
+    pureBreed: "",
+    petDescription: "",
+    image: "",
+    petBDay: "",
+    female: "",
+    lastHeat: "",
   });
 
   console.log(petFormData);
-
 
   // set state for form validation
   const [validated] = useState(false);
@@ -42,7 +37,6 @@ const SavePetform = () => {
     }
   }, [error]);
 
-  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setPetFormData({ ...petFormData, [name]: value });
@@ -67,19 +61,18 @@ const SavePetform = () => {
     } catch (err) {
       console.error(err);
     }
-  
-    setPetFormData({
-      petId: '',
-      petName: '',
-      breed: '',
-      pureBreed: '',
-      petDescription: '',
-      image: '',
-      petBDay: '',
-      female: '',
-      lastHeat: '',
-    });
 
+    setPetFormData({
+      petId: "",
+      petName: "",
+      breed: "",
+      pureBreed: "",
+      petDescription: "",
+      image: "",
+      petBDay: "",
+      female: "",
+      lastHeat: "",
+    });
   };
 
   // const updatedSavedPets = () => {
@@ -195,19 +188,19 @@ const SavePetform = () => {
         <Button
           disabled={
             !(
-              petFormData.petName &&
-              petFormData.breed &&
-              petFormData.pureBreed &&
-              petFormData.petDescription  &&
-              petFormData.image  &&
-              petFormData.petBDay  &&
-              petFormData.female  &&
-              petFormData.lastHeat
+              petFormData.petName
+              // petFormData.breed &&
+              // petFormData.pureBreed &&
+              // petFormData.petDescription  &&
+              // petFormData.image  &&
+              // petFormData.petBDay  &&
+              // petFormData.female  &&
+              // petFormData.lastHeat
             )
           }
           type="submit"
           variant="success"
-         >
+        >
           Submit
         </Button>
       </Form>
