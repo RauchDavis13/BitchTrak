@@ -48,11 +48,7 @@ function App() {
         <>
           <Navbar />
           <Switch>
-<<<<<<< HEAD
-            <Route exact path="/" component={SavedPets} />
-=======
             <Route exact path="/" component={Homepage} />
->>>>>>> f21d674e8f3d936cd11552882b5d7ad457480713
             <Route exact path="/addPets" component={AddPets} />
             <Route exact path="/searchDogs" component={SearchDogs} />
             <Route exact path="/savedDogs" component={SavedDogs} />

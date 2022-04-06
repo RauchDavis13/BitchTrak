@@ -31,9 +31,11 @@ const petSchema = new Schema({
     type: String,
   },
 });
-// when a user is queried, we'll also get another field called `petCount` with the number of saved pets the user has
-petSchema.virtual('petCount').get(function () {
-  return this.savedPets.length;
-});
-const Pet = model('Pet', petSchema);
+// // when a user is queried, we'll also get another field called `petCount` with the number of saved pets the user has
+// petSchema.virtual('petCount').get(function () {
+//   return this.savedPets.length;
+// });
+// const Pet = model('Pet', petSchema);
+
+
 module.exports = petSchema;
