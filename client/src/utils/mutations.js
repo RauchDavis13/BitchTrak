@@ -24,7 +24,7 @@ export const ADD_USER = gql`
 
 export const SAVE_PET = gql`
   mutation savePet($petData: PetInput!) {
-    savePet(petData: $petData) {
+    savePet(petId: $petData) {
       _id
       username
       email
@@ -44,9 +44,9 @@ export const SAVE_PET = gql`
 `;
 
 export const REMOVE_PET = gql`
-  mutation removePet($_id: ID!) {
-    removePet(_id: $_id) {
-      _id
+  mutation removePet($petId: ID!) {
+    removePet(petId: $_id) {
+      petId
       username
       email
       savedPets {

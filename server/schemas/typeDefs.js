@@ -22,7 +22,6 @@ const typeDefs = gql`
     lastHeat: String
   }
   input PetInput {
-    petId: ID
     petName: String!
     petDescription: String
     image: String
@@ -77,7 +76,7 @@ const typeDefs = gql`
     addUser(username: String!, email: String!, password: String!): Auth
     saveDog(dogData: DogInput!): User
     removeDog(dogId: ID!): User
-    savePet(petId: PetInput!): User
+    savePet(petData: PetInput!): User
     removePet(petId: ID!): User
   }
 `;
