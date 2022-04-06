@@ -1,6 +1,6 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User } = require("../models");
-const { signToken } = require("../auth");
+const { signToken } = require("../utils/auth");
 const petSearch = require("../queries/petfinder");
 
 const resolvers = {
@@ -21,12 +21,13 @@ const resolvers = {
       console.log({ pets });
       const result = pets.map((pet) => {
         return {
-          dogId: pet.id,
-          authors: [],
-          description: pet.description,
-          image: pet.primary_photo_cropped.medium,
-          link: pet.url,
-          title: pet.name,
+          petId: pet.id,
+          petName: pet.petName,
+          description: pet.petDescription,
+          petBday: pet.petBday,
+          breed: pet.breed,
+          pureBreed: pet.pureBreed,
+          lastHeat: pet.lastHeat,
         };
       });
       console.log(result);
@@ -36,8 +37,10 @@ const resolvers = {
 
   Mutation: {
     addUser: async (parent, args) => {
+      console.log(args);
       const user = await User.create(args);
       const token = signToken(user);
+      console.log(token);
 
       return { token, user };
     },
@@ -85,7 +88,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    savedDog: async (parent, { dogData }, context) => {
+    saveDog: async (parent, { dogData }, context) => {
       if (context.user) {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },

@@ -1,12 +1,12 @@
-export const getSavedDogIds = () => {
-  const savedDogIds = localStorage.getItem('saved_dogs')
-    ? JSON.parse(localStorage.getItem('saved_dogs'))
+export const getSavedPetIds = () => {
+  const savedPetIds = localStorage.getItem('saved_pets')
+    ? JSON.parse(localStorage.getItem('saved_pets'))
     : [];
 
-  return savedDogIds;
+  return savedPetIds;
 };
 
-export const savePetIds = (petIdArr) => {
+export const savePetId = (petIdArr) => {
   if (petIdArr.length) {
     localStorage.setItem('saved_pets', JSON.stringify(petIdArr));
   } else {
@@ -22,10 +22,24 @@ export const removePetId = (petId) => {
   if (!savedPetIds) {
     return false;
   }
+
+  const updatedSavedPetIds = savedPetIds?.filter((savedPetId) => savedPetId !== petId);
+  localStorage.setItem('saved_pets', JSON.stringify(updatedSavedPetIds));
+
+  return true;
 };
 
 
-export const savedDogIds = (dogIdArr) => {
+export const getSavedDogIds = () => {
+  const savedDogIds = localStorage.getItem('saved_dogs')
+    ? JSON.parse(localStorage.getItem('saved_dogs'))
+    : [];
+
+  return savedDogIds;
+};
+
+
+export const saveDogIds = (dogIdArr) => {
   if (dogIdArr.length) {
     localStorage.setItem('saved_dogs', JSON.stringify(dogIdArr));
   } else {
