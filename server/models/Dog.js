@@ -30,8 +30,6 @@ const dogSchema = new Schema([
     },
     email: {
       type: String,
-      // required: true,
-      // unique: true,
       match: [/.+@.+\..+/, "Must use a valid email address"],
     },
     phone: {

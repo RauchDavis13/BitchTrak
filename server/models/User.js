@@ -15,19 +15,19 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: true,
-      // unique: true,
+      unique: true,
       match: [/.+@.+\..+/, "Must use a valid email address"],
     },
     password: {
       type: String,
       required: true,
     },
-    // petCount: {
-    //   type: Number,
-    // },
-    // dogCount: {
-    //   type: Number,
-    // },
+    petCount: {
+      type: Number,
+    },
+    dogCount: {
+      type: Number,
+    },
     // set savedDogs to be an array of data that adheres to the dogSchema
     savedDogs: [dogSchema],
     // set savedPets to be an array of data that adheres to the petSchema
