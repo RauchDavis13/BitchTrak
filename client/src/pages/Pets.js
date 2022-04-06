@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Jumbotron,
   Container,
@@ -11,10 +11,14 @@ import { QUERY_ME } from '../utils/queries';
 import { REMOVE_PET } from '../utils/mutations';
 import { removePetId } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import './Calender.css';
 const SavedPets = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removePet, { error }] = useMutation(REMOVE_PET);
   const userData = data?.me || {};
+  const [date, setDate] = useState(new Date());
   // function to add new pet to User
   const addPet = async () => {
     console.log('add pet clicked');
@@ -52,11 +56,35 @@ const SavedPets = () => {
       <Container>
         <h2>
           {userData.savedPets?.length
-            ? `Viewing ${userData.savedPets.length} saved ${
-                userData.savedPets.length === 1 ? 'pet' : 'pets'
-              }:`
+            ? `Viewing ${userData.savedPets.length} saved ${userData.savedPets.length === 1 ? 'pet' : 'pets'
+            }:`
             : 'You have no saved pets!'}
         </h2>
+        {/* calendar start */}
+        <div>
+          <h1 className='text-center'>React Calendar with Range</h1>
+          <div className='calendar-container'>
+            <Calendar
+              onChange={setDate}
+              value={date}
+              selectRange={true}
+            />
+          </div>
+          {date.length > 0 ? (
+            <p className='text-center'>
+              <span className='bold'>Start:</span>{' '}
+              {date[0].toDateString()}
+              &nbsp;|&nbsp;
+              <span className='bold'>End:</span> {date[1].toDateString()}
+            </p>
+          ) : (
+            <p className='text-center'>
+              <span className='bold'>Default selected date:</span>{' '}
+              {date.toDateString()}
+            </p>
+          )}
+        </div>
+
         <CardColumns>
           {userData.savedPets?.map((pet) => {
             return (
@@ -75,7 +103,7 @@ const SavedPets = () => {
                   <p className='small'>{pet.petName}'s Birthday: {pet.petBday} </p>
                   <p className='small'>{pet.petName}'s last heat {pet.lastHeat}</p>
                   <Card.Text>{pet.description}</Card.Text>
-       
+
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeletePet(pet.petId)}
