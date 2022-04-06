@@ -4,6 +4,7 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
+
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
@@ -24,7 +25,7 @@ const AppNavbar = () => {
               {/* if user is logged in show saved dogs and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/'>
+                  <Nav.Link as={Link} to='/savedPets'>
                     Your Pets
                   </Nav.Link>
                   <Nav.Link as={Link} to='/addPets'>
