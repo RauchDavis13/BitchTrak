@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Row, Container } from "react-bootstrap";
+import { DatePicker, Date } from "react-datepicker";
+
+// CSS Modules, react-datepicker-cssmodules.css
+import "react-datepicker/dist/react-datepicker.css";
 
 import { useMutation } from "@apollo/client";
 import { SAVE_PET } from "../utils/mutations";
@@ -7,6 +11,10 @@ import { SAVE_PET } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const SavePetform = () => {
+
+
+
+
   // set initial form state
   const [petFormData, setPetFormData] = useState({
     petId: "",
@@ -19,6 +27,8 @@ const SavePetform = () => {
     female: "",
     lastHeat: "",
   });
+
+
 
   console.log(petFormData);
 
@@ -94,95 +104,113 @@ const SavePetform = () => {
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor="petName">Pet Name</Form.Label>
-          <Form.Control
-            type="petName"
-            placeholder="Your new dog name"
-            name="petName"
-            onChange={handleInputChange}
-            value={petFormData.petName}
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Pet name is required!
-          </Form.Control.Feedback>
+          <Container>
+            <Form.Label htmlFor="petName">Pet Name</Form.Label>
+            <Form.Control
+              type="petName"
+              placeholder="Your new dog name"
+              name="petName"
+              onChange={handleInputChange}
+              value={petFormData.petName}
+              required
+            />
+            <Form.Control.Feedback type="invalid">
+              Pet name is required!
+            </Form.Control.Feedback>
+          </Container>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="breed">Breed</Form.Label>
-          <Form.Control
-            type="breed"
-            placeholder="Your new dog's breed"
-            name="breed"
-            onChange={handleInputChange}
-            value={petFormData.breed}
-          />
+          <Container>
+            <Form.Label htmlFor="breed">Breed</Form.Label>
+            <Form.Control
+              type="breed"
+              placeholder="Your new dog's breed"
+              name="breed"
+              onChange={handleInputChange}
+              value={petFormData.breed}
+            />
+          </Container>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="purebreed">Pure Breed</Form.Label>
-          <Form.Control
-            type="pureBreed"
-            placeholder="Is your dog a pure breed (Y/N)"
-            name="pureBreed"
-            onChange={handleInputChange}
-            value={petFormData.pureBreed}
-          />
+          <Container>
+            <Form.Label htmlFor="purebreed">Pure Breed</Form.Label>
+            <Form.Control
+              type="pureBreed"
+              placeholder="Is your dog a pure breed (Y/N)"
+              name="pureBreed"
+              onChange={handleInputChange}
+              value={petFormData.pureBreed}
+            />
+          </Container>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="image">Load a Pic!</Form.Label>
-          <Form.Control
-            type="file"
-            placeholder="Your image"
-            name="image"
-            onChange={handleInputChange}
-            value={petFormData.image}
-          />
+          <Container>
+            <Form.Label htmlFor="image">Load a Pic!</Form.Label>
+            <Form.Control
+              type="file"
+              placeholder="Your image"
+              name="image"
+              onChange={handleInputChange}
+              value={petFormData.image}
+            />
+          </Container>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Container>
+            <Form.Label htmlFor="petBday">Birthday</Form.Label>
+            <Form.Control
+              type="petBDay"
+              placeholder="Your new dog's birthday"
+              name="petBDay"
+              onChange={handleInputChange}
+              value={petFormData.petBDay}
+            />
+          </Container>
+        </Form.Group>
+
+
+        <Form.Group>
+          <Container>
+            <Form.Label htmlFor="petDescription">Description</Form.Label>
+            <Form.Control
+              type="petDescription"
+              placeholder="Add some info about your new dog"
+              name="petDescription"
+              onChange={handleInputChange}
+              value={petFormData.petDescription}
+            />
+          </Container>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="petBday">Birthday</Form.Label>
-          <Form.Control
-            type="petBDay"
-            placeholder="Your new dog's birthday"
-            name="petBDay"
-            onChange={handleInputChange}
-            value={petFormData.petBDay}
-          />
+          <Container>
+            <Form.Label htmlFor="female">Female</Form.Label>
+            <Form.Control
+              type="female"
+              placeholder="Is your new dog a female (Y/N)?"
+              name="female"
+              onChange={handleInputChange}
+              value={petFormData.female}
+            />
+          </Container>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="petDescription">Description</Form.Label>
-          <Form.Control
-            type="petDescription"
-            placeholder="Add some info about your new dog"
-            name="petDescription"
-            onChange={handleInputChange}
-            value={petFormData.petDescription}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="female">Female</Form.Label>
-          <Form.Control
-            type="female"
-            placeholder="Is your new dog a female (Y/N)?"
-            name="female"
-            onChange={handleInputChange}
-            value={petFormData.female}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="lastHeat">Heat</Form.Label>
-          <Form.Control
-            type="lastHeat"
-            placeholder="When was your dog's last heat?"
-            name="lastHeat"
-            onChange={handleInputChange}
-            value={petFormData.lastHeat}
-          />
+          <Container>
+            <Form.Label htmlFor="lastHeat">Heat</Form.Label>
+            <Form.Control
+              type="lastHeat"
+              placeholder="When was your dog's last heat?"
+              name="lastHeat"
+              onChange={handleInputChange}
+              value={petFormData.lastHeat}
+            />
+          </Container>
         </Form.Group>
 
         <Button
