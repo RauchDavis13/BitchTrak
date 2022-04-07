@@ -12,6 +12,13 @@ import { useMutation } from '@apollo/client';
 import { SAVE_DOG } from '../utils/mutations';
 import { saveDogIds, getSavedDogIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
+
+require('dotenv').config()  
+
+
+const { Client } = require ("@petfinder/petfinder-js");
+const client = new Client({apiKey: process.env.PETFINDER_APIKEY , secret: process.env.PETFINDER_SECRET});
+
 const SearchDogs = () => {
   // create state for holding returned google api data
   const [searchedDogs, setSearchedDogs] = useState([]);
@@ -33,7 +40,7 @@ const SearchDogs = () => {
     }
     try {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+        `https://api.petfinder.com/v2/types/{dog}?q=${searchInput}`
       );
       if (!response.ok) {
         throw new Error('something went wrong!');

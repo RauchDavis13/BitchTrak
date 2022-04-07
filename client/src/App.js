@@ -13,6 +13,10 @@ import SavedDogs from './pages/SavedDogs';
 import Navbar from './components/Navbar';
 import SavedPets from './pages/Pets';
 import AddPets from './components/AddPet';
+import { useEffect, createContext, useState } from "react";
+
+export const AuthContext = createContext();
+
 // import petSchema from '../../server/models/Pet';
 
 // import petSchema from '../../server/models/Pet';
@@ -42,6 +46,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [accessToken, setAccessToken] = useState(null);
   return (
     <ApolloProvider client={client}>
       <Router>
