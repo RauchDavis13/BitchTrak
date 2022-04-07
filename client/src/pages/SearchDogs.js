@@ -13,12 +13,11 @@ import { SAVE_DOG } from '../utils/mutations';
 import { saveDogIds, getSavedDogIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
 import { Client } from "@petfinder/petfinder-js";
+import ParticlesBg from 'particles-bg'
 
 require('dotenv').config()  
 
-
 const client = new Client({apiKey: "U4ZufTHiHzEX2M4jAXOXBT5P3U8i8Dq8k3FlSipc8E0yJMVH0v", secret: "NFUXJUBaZf37ePCPOcaCBVYfq6wMyJnwvIMvbSFn"});
-
 const SearchDogs = () => {
   // create state for holding returned google api data
   const [searchedDogs, setSearchedDogs] = useState([]);
@@ -35,6 +34,7 @@ const SearchDogs = () => {
   // create method to search for dogs and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    debugger;
     if (!searchInput) {
       return false;
     }
@@ -42,12 +42,15 @@ const SearchDogs = () => {
       // const response = await fetch(
       //   `https://api.petfinder.com/v2/types/{dog}?q=${searchInput}`
       // );
-      debugger;
 
-      const response = await client.animal.search();
+      const response = await client.animal.search({
+        type: 'dog',
+        breed: searchInput,
+      });
       console.log('response', response);
       
       const items = response.data.animals;
+
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
       // }
@@ -98,9 +101,14 @@ const SearchDogs = () => {
   };
   return (
     <>
+       <h2 className="text-center pt-3">
+          {searchedDogs.length
+            ? `Viewing ${searchedDogs.length} results:`
+            : 'Search for a Mate to begin'}
+        </h2>
       {/* This is needed for the validation functionality above */}
       {/* <Form noValidate validated={validated} onSubmit={handleFormSubmit}> */}
-      <Form onSubmit={handleFormSubmit}>
+      <Form onSubmit={handleFormSubmit} className="w-50 m-auto pt-3">
         {/* show alert if server response is bad */}
 
         {/* <Alert
@@ -113,7 +121,7 @@ const SearchDogs = () => {
         </Alert> */}
 
         <Form.Group>
-          <Form.Label htmlFor="dogName">Dog Name</Form.Label>
+          <Form.Label htmlFor="dogName"><h5>Dog Name</h5></Form.Label>
           <Form.Control
             type="dogName"
             placeholder="Search for a dog by name"
@@ -124,7 +132,7 @@ const SearchDogs = () => {
         </Form.Group>
    
         <Form.Group>
-          <Form.Label htmlFor="breeds">Breed</Form.Label>
+          <Form.Label htmlFor="breeds"><h5>Breed</h5></Form.Label>
           <Form.Control
             type="breeds"
             placeholder="Search by Breed"
@@ -135,7 +143,7 @@ const SearchDogs = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="age">Age</Form.Label>
+          <Form.Label htmlFor="age"><h5>Age</h5></Form.Label>
           <Form.Control
             type="pureBreed"
             placeholder="Search by Age"
@@ -146,7 +154,7 @@ const SearchDogs = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="gender">Gender</Form.Label>
+          <Form.Label htmlFor="gender"><h5>Gender</h5></Form.Label>
           <Form.Control
             type="text"
             placeholder="Search by Gender (Male/Female)"
@@ -165,18 +173,13 @@ const SearchDogs = () => {
           //   )
           // }
           type="submit"
-          variant="success"
+          variant="light"
          >
           Submit
         </Button>
       </Form>
     
       <Container>
-        <h2>
-          {searchedDogs.length
-            ? `Viewing ${searchedDogs.length} results:`
-            : 'Search for a dog to begin'}
-        </h2>
         <CardColumns>
           {searchedDogs.map((dog) => {
             return (
@@ -225,6 +228,14 @@ const SearchDogs = () => {
           })}
         </CardColumns>
       </Container>
+      <ParticlesBg type="circle" bg={{
+        position: "absolute",
+        zIndex:-1,
+        top: 0,
+        left: 0,
+        height: 1000
+      }} />
+
     </>
   );
 };

@@ -13,7 +13,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar bg='info' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             BreedTrack
@@ -26,16 +26,16 @@ const AppNavbar = () => {
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/savedPets'>
-                    Your Pets
+                    My Pet
                   </Nav.Link>
                   <Nav.Link as={Link} to='/addPets'>
-                    Add a new Pet
+                    + Pet
                   </Nav.Link>
                   <Nav.Link as={Link} to='/searchDogs'>
-                    Search For Dogs
+                    Mate Finder
                   </Nav.Link>
                   <Nav.Link as={Link} to='/savedDogs'>
-                    See Your Dogs
+                    ♡ Mates
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
