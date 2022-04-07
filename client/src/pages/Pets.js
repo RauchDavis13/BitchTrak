@@ -155,12 +155,12 @@ const SavedPets = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      {/* <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Viewing {userData.username}'s pets!</h1>
           <h3 onClick={savePet}>Add a new pet</h3>
         </Container>
-      </Jumbotron>
+      </Jumbotron> */}
       <Container>
         <h2>
           {userData.savedPets?.length
