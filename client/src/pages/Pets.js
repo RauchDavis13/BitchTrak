@@ -142,7 +142,13 @@ const SavedPets = () => {
             })}
           </CardColumns>
         </Container>
-        <ParticlesBg type="circle" bg={true} />
+        <ParticlesBg type="circle" bg={{
+        position: "absolute",
+        zIndex:-1,
+        top: 0,
+        left: 0,
+        height: 1000
+      }} />
       </>
     );
   };
@@ -193,7 +199,13 @@ const SavedPets = () => {
           })}
         </CardColumns>
       </Container>
-
+      <ParticlesBg type="circle" bg={{
+        position: "absolute",
+        zIndex:-1,
+        top: 0,
+        left: 0,
+        height: 1000
+      }} />
     </>
   );
 };

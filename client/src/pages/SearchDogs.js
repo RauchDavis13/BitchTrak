@@ -107,7 +107,7 @@ const SearchDogs = () => {
         </Alert> */}
 
         <Form.Group>
-          <Form.Label htmlFor="dogName">Dog Name</Form.Label>
+          <Form.Label htmlFor="dogName"><h5>Dog Name</h5></Form.Label>
           <Form.Control
             type="dogName"
             placeholder="Search for a dog by name"
@@ -118,7 +118,7 @@ const SearchDogs = () => {
         </Form.Group>
    
         <Form.Group>
-          <Form.Label htmlFor="breeds">Breed</Form.Label>
+          <Form.Label htmlFor="breeds"><h5>Breed</h5></Form.Label>
           <Form.Control
             type="breeds"
             placeholder="Search by Breed"
@@ -129,7 +129,7 @@ const SearchDogs = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="age">Age</Form.Label>
+          <Form.Label htmlFor="age"><h5>Age</h5></Form.Label>
           <Form.Control
             type="pureBreed"
             placeholder="Search by Age"
@@ -140,7 +140,7 @@ const SearchDogs = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="gender">Gender</Form.Label>
+          <Form.Label htmlFor="gender"><h5>Gender</h5></Form.Label>
           <Form.Control
             type="text"
             placeholder="Search by Gender (Male/Female)"
@@ -212,7 +212,13 @@ const SearchDogs = () => {
           })}
         </CardColumns>
       </Container>
-      <ParticlesBg type="circle" bg={true} />
+      <ParticlesBg type="circle" bg={{
+        position: "absolute",
+        zIndex:-1,
+        top: 0,
+        left: 0,
+        height: 1000
+      }} />
 
     </>
   );

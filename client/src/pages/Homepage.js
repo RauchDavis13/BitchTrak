@@ -25,7 +25,7 @@ const Homepage = () => {
   const userData = data?.me || {};
 
   if (loading) {
-    return <h2>LOADING...</h2>;
+    return <h2>Fetching 🐾🐾🐾🐾🐾</h2>;
   }
   return (
     <>
@@ -57,35 +57,14 @@ const Homepage = () => {
       <p>As a pet owner of a unspayed b***h 🫢😉, I will like to be able to track my dog heat cycle. As well as find potential mates for breeding. 
       </p>
       </div>
-      <ParticlesBg type="circle" bg={true} />
+      <ParticlesBg type="circle" bg={{
+        position: "absolute",
+        zIndex:-1,
+        top: 0,
+        left: 0,
+        height: 1000
+      }} />
     </>
   );
 };
 export default Homepage;
-
-// const Homepage = () => {
-  // const { loading, data } = useQuery(QUERY_ME);
-  // const userData = data?.me || {};
-
-  // if (loading) {
-  //   return <h2>LOADING...</h2>;
-  // }
-  // class Circles extends Component {
-  //   constructor() {
-  //     super();
-  //     this.state = {
-  //       name: "React",
-  //     };
-  //   }
-  //   render() {
-  //     return (
-  //       <>
-  //         <ParticlesBg type="circle" bg={true} />
-  //       </>
-  //     )
-  //   }
-  // }
-
-  // render(<Circles />, document.getElementById("root"));
-// };
-// export default Homepage;
