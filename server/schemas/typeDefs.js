@@ -11,7 +11,7 @@ const typeDefs = gql`
     savedPets: [Pet]
   }
   type Pet {
-    petId: ID!
+    petId: ID
     petName: String!
     petDescription: String
     image: String
@@ -34,12 +34,12 @@ const typeDefs = gql`
 
   type Dog {
     dogId: ID!
-    dogName: String!
+    dogName: String
     description: String
     photos: String
     age: Int
-    breeds: String!
-    gender: String!
+    breeds: String
+    gender: String
     shots: Boolean
     email: String
     phone: String
@@ -53,12 +53,12 @@ const typeDefs = gql`
     user: User
   }
   input DogInput {
-    dogName: String!
+    dogName: String
     description: String
     photos: String
     age: Int
-    breeds: String!
-    gender: String!
+    breeds: String
+    gender: String
     shots: Boolean
     email: String
     phone: String
@@ -77,7 +77,7 @@ const typeDefs = gql`
     saveDog(dogData: DogInput!): User
     removeDog(dogId: ID!): User
     savePet(petData: PetInput!): User
-    removePet(PetId: ID!): User
+    removePet(petId: ID!): User
   }
 `;
 module.exports = typeDefs;

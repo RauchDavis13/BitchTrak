@@ -7,12 +7,18 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-
+import Homepage from './pages/Homepage';
 import SearchDogs from './pages/SearchDogs';
 import SavedDogs from './pages/SavedDogs';
 import Navbar from './components/Navbar';
 import SavedPets from './pages/Pets';
 import AddPets from './components/AddPet';
+import { useEffect, createContext, useState } from "react";
+
+export const AuthContext = createContext();
+
+// import petSchema from '../../server/models/Pet';
+
 // import petSchema from '../../server/models/Pet';
 
 // Construct our main GraphQL API endpoint
@@ -40,16 +46,18 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [accessToken, setAccessToken] = useState(null);
   return (
     <ApolloProvider client={client}>
       <Router>
         <>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={SavedPets} />
+            <Route exact path="/" component={Homepage} />
             <Route exact path="/addPets" component={AddPets} />
             <Route exact path="/searchDogs" component={SearchDogs} />
             <Route exact path="/savedDogs" component={SavedDogs} />
+            <Route exact path="/savedPets" component={SavedPets} />
             <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
           </Switch>
         </>

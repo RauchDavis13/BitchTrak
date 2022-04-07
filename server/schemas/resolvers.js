@@ -27,7 +27,7 @@ const resolvers = {
           petBday: pet.petBday,
           breed: pet.breed,
           pureBreed: pet.pureBreed,
-          lastheat: pet.lastHeat,
+          lastHeat: pet.lastHeat,
         };
       });
       console.log(result);

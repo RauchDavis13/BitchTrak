@@ -4,6 +4,7 @@ import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
+
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
@@ -12,7 +13,7 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar bg='info' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
             BreedTrack
@@ -24,17 +25,17 @@ const AppNavbar = () => {
               {/* if user is logged in show saved dogs and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/'>
-                    Your Pets
+                  <Nav.Link as={Link} to='/savedPets'>
+                    My Pet
                   </Nav.Link>
                   <Nav.Link as={Link} to='/addPets'>
-                    Add a new Pet
+                    + Pet
                   </Nav.Link>
                   <Nav.Link as={Link} to='/searchDogs'>
-                    Search For Dogs
+                    Mate Finder
                   </Nav.Link>
                   <Nav.Link as={Link} to='/savedDogs'>
-                    See Your Dogs
+                    ♡ Mates
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>

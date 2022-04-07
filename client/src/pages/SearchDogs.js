@@ -12,6 +12,12 @@ import { useMutation } from '@apollo/client';
 import { SAVE_DOG } from '../utils/mutations';
 import { saveDogIds, getSavedDogIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import { Client } from "@petfinder/petfinder-js";
+import ParticlesBg from 'particles-bg'
+
+require('dotenv').config()  
+
+const client = new Client({apiKey: "U4ZufTHiHzEX2M4jAXOXBT5P3U8i8Dq8k3FlSipc8E0yJMVH0v", secret: "NFUXJUBaZf37ePCPOcaCBVYfq6wMyJnwvIMvbSFn"});
 const SearchDogs = () => {
   // create state for holding returned google api data
   const [searchedDogs, setSearchedDogs] = useState([]);
@@ -28,17 +34,26 @@ const SearchDogs = () => {
   // create method to search for dogs and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    debugger;
     if (!searchInput) {
       return false;
     }
     try {
-      const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
-      );
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-      const { items } = await response.json();
+      // const response = await fetch(
+      //   `https://api.petfinder.com/v2/types/{dog}?q=${searchInput}`
+      // );
+
+      const response = await client.animal.search({
+        type: 'dog',
+        breed: searchInput,
+      });
+      console.log('response', response);
+      
+      const items = response.data.animals;
+
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
       const dogData = items.map((dog) => {
         // if (!dog.attributes.spayed_neutered) {
           return {dogId: dog.id,
@@ -48,9 +63,8 @@ const SearchDogs = () => {
             description: dog.description,
             gender: dog.gender,
             shots: dog.attributes.shots_current,
-            photos: dog.photos?.medium || '',
-    
-            email: dog.contact.email,
+            photos: dog.photos[0] ? dog.photos[0].small : '',
+            dogEmail: dog.contact.email,
             phone: dog.contact.phone,
             address: dog.contact.address.address1,
             city: dog.contact.address.city,
@@ -59,6 +73,7 @@ const SearchDogs = () => {
         // }
         
       });
+      console.log('dogData', dogData);
       setSearchedDogs(dogData);
       setSearchInput('');
     } catch (err) {
@@ -86,51 +101,112 @@ const SearchDogs = () => {
   };
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-          <h1>Search for Dogs !</h1>
-          <Form onSubmit={handleFormSubmit}>
-            <Form.Row>
-              <Col xs={12} md={8}>
-                <Form.Control
-                  name="searchInput"
-                  value={searchInput}
-                  onChange={(e) => setSearchInput(e.target.value)}
-                  type="text"
-                  size="lg"
-                  placeholder="Search for a dog"
-                />
-              </Col>
-              <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
-                  Submit Search
-                </Button>
-              </Col>
-            </Form.Row>
-          </Form>
-        </Container>
-      </Jumbotron>
-      <Container>
-        <h2>
+       <h2 className="text-center pt-3">
           {searchedDogs.length
             ? `Viewing ${searchedDogs.length} results:`
-            : 'Search for a dog to begin'}
+            : 'Search for a Mate to begin'}
         </h2>
+      {/* This is needed for the validation functionality above */}
+      {/* <Form noValidate validated={validated} onSubmit={handleFormSubmit}> */}
+      <Form onSubmit={handleFormSubmit} className="w-50 m-auto pt-3">
+        {/* show alert if server response is bad */}
+
+        {/* <Alert
+          dismissible
+          onClose={() => setShowAlert(false)}
+          show={showAlert}
+          variant="danger"
+        >
+          Something went wrong with your new dog profile!
+        </Alert> */}
+
+        <Form.Group>
+          <Form.Label htmlFor="dogName"><h5>Dog Name</h5></Form.Label>
+          <Form.Control
+            type="dogName"
+            placeholder="Search for a dog by name"
+            name="dogName"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchedDogs.dogName}
+          />
+        </Form.Group>
+   
+        <Form.Group>
+          <Form.Label htmlFor="breeds"><h5>Breed</h5></Form.Label>
+          <Form.Control
+            type="breeds"
+            placeholder="Search by Breed"
+            name="breeds"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchedDogs.breeds}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="age"><h5>Age</h5></Form.Label>
+          <Form.Control
+            type="pureBreed"
+            placeholder="Search by Age"
+            name="age"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchedDogs.age}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label htmlFor="gender"><h5>Gender</h5></Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Search by Gender (Male/Female)"
+            name="gender"
+            onChange={(e) => setSearchInput(e.target.value)}
+            value={searchedDogs.gender}
+          />
+        </Form.Group>
+        <Button
+          // disabled={
+          //   !(
+          //     searchedDogs.dogName &&
+          //     searchedDogs.breeds &&
+          //     searchedDogs.age  &&
+          //     searchedDogs.gemder &&
+          //   )
+          // }
+          type="submit"
+          variant="light"
+         >
+          Submit
+        </Button>
+      </Form>
+    
+      <Container>
         <CardColumns>
           {searchedDogs.map((dog) => {
             return (
               <Card key={dog.dogId} border="dark">
-                {dog.image ? (
+                <h3>Name: {dog.dogName}</h3>
+                {dog.photos ? (
                   <Card.Img
-                    src={dog.image}
-                    alt={`The cover for ${dog.title}`}
+                    src={dog.photos}
+                    alt={`The picture for ${dog.dogName}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{dog.name}</Card.Title>
-                  <p className="small">Authors: {dog.breed}</p>
+                  {/* <Card.Title>{dog.title}</Card.Title> */}
+                  <p className="small">Name: {dog.dogName}</p>
+                  <p className="small">Age: {dog.age}</p>
+                  <p className="small">Gender: {dog.gender}</p>
+                  <p className="small">Breed: {dog.breeds}</p>
+                  <p className="small">Has the dog had it's shots?: {dog.shots}</p>
                   <Card.Text>{dog.description}</Card.Text>
+                  <h4>Contact Info</h4>
+                  <p className="small">Email: {dog.dogEmail}</p>
+                  <p className="small">Phone: {dog.phone}</p> 
+                  <p className="small">Address: {dog.address}</p>
+                  <p className="small">City: {dog.city}</p>
+                  <p className="small">State: {dog.state}</p>
+                  <p className="small">Zip: {dog.postcode}</p>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedDogIds?.some(
@@ -139,9 +215,11 @@ const SearchDogs = () => {
                       className="btn-block btn-info"
                       onClick={() => handleSaveDog(dog.dogId)}
                     >
-                      {savedDogIds?.some((savedId) => savedId === dog.dogId)
+                      {/* {
+                      saveDogIds?.some((savedId) => savedId === searchedDogs.dogId)
                         ? 'Dog Already Saved!'
-                        : 'Save This Dog!'}
+                        : 'Save This Dog!'} */}
+                        Save
                     </Button>
                   )}
                 </Card.Body>
@@ -150,6 +228,14 @@ const SearchDogs = () => {
           })}
         </CardColumns>
       </Container>
+      <ParticlesBg type="circle" bg={{
+        position: "absolute",
+        zIndex:-1,
+        top: 0,
+        left: 0,
+        height: 1000
+      }} />
+
     </>
   );
 };

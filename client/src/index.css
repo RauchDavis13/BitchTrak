@@ -1,17 +1,23 @@
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Rubik Mono One', sans-serif;
+  color:rgb(144, 27, 146);
+  /* -webkit-text-stroke: 1px #fefefe; */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6,p {
   font-family: 'Rubik Mono One', sans-serif;
+  -webkit-text-stroke: 1px #fefefe;
+  /* font-size: medium; */
+  
 }
 
 .small {
   font-weight: 300;
   font-style: italic;
+}
+
+#carousel {
+  width:900px;
+  height:500px;
+  margin: auto;
 }

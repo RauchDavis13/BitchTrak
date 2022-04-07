@@ -24,14 +24,14 @@ export const QUERY_ME = gql`
       }
       savedPets {
         petId
-        petname
+        petName
         image
-        petBday
+        petBDay
         petDescription
         breed
         pureBreed
         female
-        lastheat
+        lastHeat
       }
     }
   }

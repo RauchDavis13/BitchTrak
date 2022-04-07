@@ -1,14 +1,13 @@
 const { Schema } = require("mongoose");
 const petSchema = new Schema({
   // set custom id to avoid confusion with parent userId
-  petId: {
+  _id: {
     type: Schema.Types.ObjectId,
     default: () => new Types.ObjectId(),
   },
   petName: {
     type: String,
-    required: true,
-    unique: true,
+    required: true
   },
   petDescription: {
     type: String,
@@ -37,4 +36,6 @@ const petSchema = new Schema({
 //   return this.savedPets.length;
 // });
 // const Pet = model('Pet', petSchema);
+
+
 module.exports = petSchema;
