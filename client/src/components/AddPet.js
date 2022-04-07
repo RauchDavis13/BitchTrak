@@ -89,9 +89,9 @@ const SavePetform = () => {
           dismissible
           onClose={() => setShowAlert(false)}
           show={showAlert}
-          variant="danger"
+          variant="success"
         >
-          Something went wrong with your new pet profile!
+          Pet Added!
         </Alert>
 
         <Form.Group>
@@ -201,13 +201,13 @@ const SavePetform = () => {
           }
           type="submit"
           variant="light"
-         >
+        >
           Submit
         </Button>
       </Form>
       <ParticlesBg type="circle" bg={{
         position: "fixed",
-        zIndex:-1,
+        zIndex: -1,
         top: 0,
         left: 0,
         bottom: 0,
