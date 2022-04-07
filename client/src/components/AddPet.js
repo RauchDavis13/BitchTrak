@@ -6,6 +6,7 @@ import { SAVE_PET } from '../utils/mutations';
 
 import Auth from '../utils/auth';
 
+import ParticlesBg from 'particles-bg'
 
 
 const SavePetform = () => {
@@ -89,7 +90,7 @@ const SavePetform = () => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit} className="w-50 m-auto pt-3">
         {/* show alert if server response is bad */}
         <Alert
           dismissible
@@ -206,11 +207,12 @@ const SavePetform = () => {
             )
           }
           type="submit"
-          variant="success"
+          variant="light"
          >
           Submit
         </Button>
       </Form>
+      <ParticlesBg type="circle" bg={true} />
     </>
   );
 };

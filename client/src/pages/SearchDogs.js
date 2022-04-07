@@ -12,6 +12,8 @@ import { useMutation } from '@apollo/client';
 import { SAVE_DOG } from '../utils/mutations';
 import { saveDogIds, getSavedDogIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import ParticlesBg from 'particles-bg'
+
 const SearchDogs = () => {
   // create state for holding returned google api data
   const [searchedDogs, setSearchedDogs] = useState([]);
@@ -86,9 +88,14 @@ const SearchDogs = () => {
   };
   return (
     <>
+       <h2 className="text-center pt-3">
+          {searchedDogs.length
+            ? `Viewing ${searchedDogs.length} results:`
+            : 'Search for a Mate to begin'}
+        </h2>
       {/* This is needed for the validation functionality above */}
       {/* <Form noValidate validated={validated} onSubmit={handleFormSubmit}> */}
-      <Form onSubmit={handleFormSubmit}>
+      <Form onSubmit={handleFormSubmit} className="w-50 m-auto pt-3">
         {/* show alert if server response is bad */}
         {/* <Alert
           dismissible
@@ -152,18 +159,13 @@ const SearchDogs = () => {
           //   )
           // }
           type="submit"
-          variant="success"
+          variant="light"
          >
           Submit
         </Button>
       </Form>
     
       <Container>
-        <h2>
-          {searchedDogs.length
-            ? `Viewing ${searchedDogs.length} results:`
-            : 'Search for a dog to begin'}
-        </h2>
         <CardColumns>
           {searchedDogs.map((dog) => {
             return (
@@ -210,6 +212,8 @@ const SearchDogs = () => {
           })}
         </CardColumns>
       </Container>
+      <ParticlesBg type="circle" bg={true} />
+
     </>
   );
 };

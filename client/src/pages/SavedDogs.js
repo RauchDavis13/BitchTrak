@@ -11,6 +11,8 @@ import { QUERY_ME } from '../utils/queries';
 import { REMOVE_DOG } from '../utils/mutations';
 import { removeDogId } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import ParticlesBg from 'particles-bg'
+
 const SavedDogs = () => {
   const { loading, data } = useQuery(QUERY_ME);
   const [removeDog, { error }] = useMutation(REMOVE_DOG);
@@ -37,18 +39,13 @@ const SavedDogs = () => {
   }
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-          <h1>Viewing {userData.username}'s dogs!</h1>
-        </Container>
-      </Jumbotron>
       <Container>
-        <h2>
+        <h2 className="text-center">
           {userData.savedDogs?.length
             ? `Viewing ${userData.savedDogs.length} saved ${
                 userData.savedDogs.length === 1 ? 'dog' : 'dogs'
               }:`
-            : 'You have no saved dogs!'}
+            : 'You have no saved Mates 😢'}
         </h2>
         <CardColumns>
           {userData.savedDogs?.map((dog) => {
@@ -78,6 +75,8 @@ const SavedDogs = () => {
           })}
         </CardColumns>
       </Container>
+      <ParticlesBg type="circle" bg={true} />
+
     </>
   );
 };
