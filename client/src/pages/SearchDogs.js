@@ -12,12 +12,12 @@ import { useMutation } from '@apollo/client';
 import { SAVE_DOG } from '../utils/mutations';
 import { saveDogIds, getSavedDogIds } from '../utils/localStorage';
 import Auth from '../utils/auth';
+import { Client } from "@petfinder/petfinder-js";
 
 require('dotenv').config()  
 
 
-const { Client } = require ("@petfinder/petfinder-js");
-const client = new Client({apiKey: process.env.PETFINDER_APIKEY , secret: process.env.PETFINDER_SECRET});
+const client = new Client({apiKey: "U4ZufTHiHzEX2M4jAXOXBT5P3U8i8Dq8k3FlSipc8E0yJMVH0v", secret: "NFUXJUBaZf37ePCPOcaCBVYfq6wMyJnwvIMvbSFn"});
 
 const SearchDogs = () => {
   // create state for holding returned google api data
@@ -39,13 +39,18 @@ const SearchDogs = () => {
       return false;
     }
     try {
-      const response = await fetch(
-        `https://api.petfinder.com/v2/types/{dog}?q=${searchInput}`
-      );
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-      const { items } = await response.json();
+      // const response = await fetch(
+      //   `https://api.petfinder.com/v2/types/{dog}?q=${searchInput}`
+      // );
+      debugger;
+
+      const response = await client.animal.search();
+      console.log('response', response);
+      
+      const items = response.data.animals;
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
       const dogData = items.map((dog) => {
         // if (!dog.attributes.spayed_neutered) {
           return {dogId: dog.id,
@@ -55,8 +60,7 @@ const SearchDogs = () => {
             description: dog.description,
             gender: dog.gender,
             shots: dog.attributes.shots_current,
-            photos: dog.photos?.medium || '',
-    
+            photos: dog.photos[0] ? dog.photos[0].small : '',
             dogEmail: dog.contact.email,
             phone: dog.contact.phone,
             address: dog.contact.address.address1,
@@ -66,6 +70,7 @@ const SearchDogs = () => {
         // }
         
       });
+      console.log('dogData', dogData);
       setSearchedDogs(dogData);
       setSearchInput('');
     } catch (err) {
@@ -186,30 +191,32 @@ const SearchDogs = () => {
                 ) : null}
                 <Card.Body>
                   {/* <Card.Title>{dog.title}</Card.Title> */}
-                  <p className="small">Name: {searchedDogs.dogName}</p>
-                  <p className="small">Age: {searchedDogs.age}</p>
-                  <p className="small">Gender: {searchedDogs.gender}</p>
-                  <p className="small">Breed: {searchedDogs.breeds}</p>
-                  <p className="small">Has the dog had it's shots?: {searchedDogs.shots}</p>
-                  <Card.Text>{searchedDogs.description}</Card.Text>
+                  <p className="small">Name: {dog.dogName}</p>
+                  <p className="small">Age: {dog.age}</p>
+                  <p className="small">Gender: {dog.gender}</p>
+                  <p className="small">Breed: {dog.breeds}</p>
+                  <p className="small">Has the dog had it's shots?: {dog.shots}</p>
+                  <Card.Text>{dog.description}</Card.Text>
                   <h4>Contact Info</h4>
-                  <p className="small">Email: {searchedDogs.dogEmail}</p>
-                  <p className="small">Phone: {searchedDogs.phone}</p> 
-                  <p className="small">Address: {searchedDogs.address}</p>
-                  <p className="small">City: {searchedDogs.city}</p>
-                  <p className="small">State: {searchedDogs.state}</p>
-                  <p className="small">Zip: {searchedDogs.postcode}</p>
+                  <p className="small">Email: {dog.dogEmail}</p>
+                  <p className="small">Phone: {dog.phone}</p> 
+                  <p className="small">Address: {dog.address}</p>
+                  <p className="small">City: {dog.city}</p>
+                  <p className="small">State: {dog.state}</p>
+                  <p className="small">Zip: {dog.postcode}</p>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedDogIds?.some(
-                        (savedId) => savedId === searchedDogs.dogId
+                        (savedId) => savedId === dog.dogId
                       )}
                       className="btn-block btn-info"
-                      onClick={() => handleSaveDog(searchedDogs.dogId)}
+                      onClick={() => handleSaveDog(dog.dogId)}
                     >
-                      {saveDogIds?.some((savedId) => savedId === searchedDogs.dogId)
+                      {/* {
+                      saveDogIds?.some((savedId) => savedId === searchedDogs.dogId)
                         ? 'Dog Already Saved!'
-                        : 'Save This Dog!'}
+                        : 'Save This Dog!'} */}
+                        Save
                     </Button>
                   )}
                 </Card.Body>
