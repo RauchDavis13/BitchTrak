@@ -71,13 +71,15 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ## Screen Shots
 Home Page User Needs To Login
-![Homepage](/README_Image/HomePage.png)
+![Homepage]![image](https://user-images.githubusercontent.com/91897531/162275258-c5932cff-3541-4005-8653-ee4cd93e498e.png)
+
 
 Login Page ...user already saved
 ![Login_SignUp](/README_Image/Login_SignUp.png)
 
 Search for a Dog ....featuring newly setup Page Count and Published Date properties
-![DogSearch](/README_Image/DogSearch.png)
+![DogSearch]![image (2)](https://user-images.githubusercontent.com/91897531/162275286-169cb264-2e62-411a-8182-8488f23bbe72.png)
+
 
 Saved Dogs ....featuring newly setup Page Count and Published Date properties
 ![SavedDogs](/README_Image/SavedDogs.png)
@@ -94,5 +96,6 @@ Saved Dogs ....featuring newly setup Page Count and Published Date properties
 - Kamyar Assadipour
 - Robert Evanik
 - K-Von Madison
+- Calvin Villanueva
 - Mohammed
 - Aanyah Cook
