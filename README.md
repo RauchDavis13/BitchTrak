@@ -82,7 +82,7 @@ Search for a Dog ....featuring newly setup Page Count and Published Date propert
 
 
 Saved Dogs ....featuring newly setup Page Count and Published Date properties
-![SavedDogs](/README_Image/SavedDogs.png)
+![SavedDogs]<img width="1380" alt="Screen Shot 2022-04-07 at 6 54 11 PM" src="https://user-images.githubusercontent.com/91897531/162335525-9a65714c-f3a9-4d0e-a8d6-2818d9ba1358.png">
 
 ## Thank You So Much To:
 ### Instructor - Matt Kim
