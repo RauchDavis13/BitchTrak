@@ -16,12 +16,12 @@ const AppNavbar = () => {
       <Navbar bg='info' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand as={Link} to='/'>
-            BreedTrack
+            Heat
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-            
+
               {/* if user is logged in show saved dogs and logout */}
               {Auth.loggedIn() ? (
                 <>
