@@ -67,7 +67,7 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 * Github Repository: https://github.com/RauchDavis13/Dog_Search.git
 
-* Heroku deployed website: https://radiant-inlet-12395.herokuapp.com/
+* Heroku deployed website: https://dogheat.herokuapp.com/
 
 ## Screen Shots
 Home Page User Needs To Login
