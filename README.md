@@ -94,8 +94,8 @@ Saved Dogs ....featuring newly setup Page Count and Published Date properties
 
 ## Fellow Students
 - Kamyar Assadipour
-- Robert Evanik
 - K-Von Madison
 - Calvin Villanueva
 - Mohammed
 - Aanyah Cook
+
