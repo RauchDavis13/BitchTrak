@@ -67,7 +67,11 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 * Github Repository: https://github.com/KDash201/BitchTrak
 
+<<<<<<< HEAD
 * Heroku deployed website: https://breedtrak.herokuapp.com/
+=======
+* Heroku deployed website: https://dogheat.herokuapp.com/
+>>>>>>> 32179ee5a00fc47068832f09032fe6866f1f389e
 
 ## Screen Shots
 Home Page User Needs To Login
@@ -75,14 +79,14 @@ Home Page User Needs To Login
 
 
 Login Page ...user already saved
-![Login_SignUp](/README_Image/Login_SignUp.png)
+![Login_SignUp]![image (3)](https://user-images.githubusercontent.com/91897531/162335271-fcbd51a3-adcc-4dc6-bedb-49baa5acd33e.png)
 
 Search for a Dog ....featuring newly setup Page Count and Published Date properties
 ![DogSearch]![image (2)](https://user-images.githubusercontent.com/91897531/162275286-169cb264-2e62-411a-8182-8488f23bbe72.png)
 
 
 Saved Dogs ....featuring newly setup Page Count and Published Date properties
-![SavedDogs](/README_Image/SavedDogs.png)
+![SavedDogs]<img width="1380" alt="Screen Shot 2022-04-07 at 6 54 11 PM" src="https://user-images.githubusercontent.com/91897531/162335525-9a65714c-f3a9-4d0e-a8d6-2818d9ba1358.png">
 
 ## Thank You So Much To:
 ### Instructor - Matt Kim
@@ -94,8 +98,8 @@ Saved Dogs ....featuring newly setup Page Count and Published Date properties
 
 ## Fellow Students
 - Kamyar Assadipour
-- Robert Evanik
 - K-Von Madison
 - Calvin Villanueva
 - Mohammed
 - Aanyah Cook
+
