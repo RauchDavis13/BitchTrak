@@ -67,11 +67,7 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 * Github Repository: https://github.com/KDash201/BitchTrak
 
-<<<<<<< HEAD
 * Heroku deployed website: https://breedtrak.herokuapp.com/
-=======
-* Heroku deployed website: https://dogheat.herokuapp.com/
->>>>>>> 32179ee5a00fc47068832f09032fe6866f1f389e
 
 ## Screen Shots
 Home Page User Needs To Login
